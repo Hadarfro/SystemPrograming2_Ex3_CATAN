@@ -6,21 +6,8 @@
 #include <cstdlib>
 
 using namespace std;
-// Enum for resource types
-enum class Resource { Wood, Brick, Sheep, Wheat, Ore, None };
 
-// Function to get string representation of resource
-string resourceToString(Resource resource) {
-    switch (resource) {
-        case Resource::Wood: return "Wood";
-        case Resource::Brick: return "Brick";
-        case Resource::Sheep: return "Sheep";
-        case Resource::Wheat: return "Wheat";
-        case Resource::Ore: return "Ore";
-        case Resource::None: return "None";
-    }
-    return "Unknown";
-}
+
 
 class Catan {
     private:
