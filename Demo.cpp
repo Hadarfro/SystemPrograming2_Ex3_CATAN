@@ -9,17 +9,16 @@
 #include "player.hpp"
 #include "board.hpp"
 using namespace std;
-using namespace ariel;
+//using namespace ariel;
 
-int main()
-{
-    Player p1("Amit");
-    Player p2("Yossi");
-    Player p3("Dana");
-    Catan catan(p1, p2, p3);
+int main(){
+    Player p1("Hadar");
+    Player p2("Shir");
+    Player p3("Roni");
+    Catan myCatan(p1, p2, p3);
     // Starting of the game. Every player places two settlements and two roads.
-    catan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Amit.
-    Board board = catan.getBoard(); // get the board of the game.
+    myCatan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Amit.
+    Board board = myCatan.getBoard(); // get the board of the game.
     vector<string> places = {"Forest", "Hills"};
     vector<int> placesNum = {5, 6};
     p1.placeSettelemnt(places, placesNum, board);
@@ -87,5 +86,5 @@ int main()
     p2.printPoints(); // p2 has 3 points because it has two settelments and a bonus points card.
     p3.printPoints(); // p3 has 2 points because it has two settelments.
 
-    catan.printWinner(); // Should print None because no player reached 10 points.
+    myCatan.printWinner(); // Should print None because no player reached 10 points.
 }
