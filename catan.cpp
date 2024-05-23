@@ -40,7 +40,7 @@ class Catan {
     void ChooseStartingPlayer(){
         // Generate a random number between 1 and 3
         size_t i = rand() % 3 + 1;
-        //cout << players[i] << endl;
+        cout << players[i].name << endl;
     }
 
     Board getBoard(){

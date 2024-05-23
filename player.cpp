@@ -9,11 +9,10 @@
 
 using namespace std;
 class Player {
-    private:
+    public:
         string name;
         map<Resource, int> resources;
         Board board;
-    public:
         Board getBoard(){
             return board;
         }
@@ -31,7 +30,7 @@ class Player {
 
                 for (const auto& tile : board.tiles) {
                     if (tile.number == roll) {
-                        for (auto& player : board.) {
+                        for (auto& player : players) {
                             player.addResource(tile.resource, 1); // Simplified resource distribution
                         }
                     }
