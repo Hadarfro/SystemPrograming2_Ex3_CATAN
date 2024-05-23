@@ -4,6 +4,8 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include "board.hpp"
+
 using namespace std;
 
 // Enum for resource types
@@ -17,7 +19,6 @@ string resourceToString(Resource resource) {
         case Resource::Sheep: return "Sheep";
         case Resource::Wheat: return "Wheat";
         case Resource::Ore: return "Ore";
-        case Resource::Devloping: return "Devloping";
         case Resource::None: return "None";
     }
     return "Unknown";
@@ -30,6 +31,13 @@ class Player {
     map<Resource, int> cards;
     Board board;
     public:
+        Player() : name("") {
+            cards[Resource::Wood] = 0;
+            cards[Resource::Brick] = 0;
+            cards[Resource::Sheep] = 0;
+            cards[Resource::Wheat] = 0;
+            cards[Resource::Ore] = 0;
+        }
         Player(string name) : name(name) {
             cards[Resource::Wood] = 0;
             cards[Resource::Brick] = 0;
@@ -45,15 +53,15 @@ class Player {
         void printResources() const {
             std::cout << "Resources of " << name << ":\n";
             for (const auto& pair : cards) {
-                std::cout << resourceToString(pair.first) << ": " << pair.second << "\n";
+                cout << resourceToString(pair.first) << ": " << pair.second << "\n";
             }
         }
 
         void placeSettelemnt(vector<string> places,vector<int> placesNum,Board board);
         void placeRoad(vector<string> places,vector<int> placesNum,Board board);
-        int rollDice();
         void endTurn();
         Board getBoard();
+        const string getName() const;
         void trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven);
         void buyDevelopmentCard();
         void printPoints();
