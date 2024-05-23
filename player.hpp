@@ -27,33 +27,34 @@ string resourceToString(Resource resource) {
 class Player {
     private:
     string name;
-    map<Resource, int> resources;
+    map<Resource, int> cards;
     Board board;
     public:
-    Player(string name) : name(name) {
-        resources[Resource::Wood] = 0;
-        resources[Resource::Brick] = 0;
-        resources[Resource::Sheep] = 0;
-        resources[Resource::Wheat] = 0;
-        resources[Resource::Ore] = 0;
-    }
-
-    void addResource(Resource resource, int amount) {
-        resources[resource] += amount;
-    }
-
-    void printResources() const {
-        std::cout << "Resources of " << name << ":\n";
-        for (const auto& pair : resources) {
-            std::cout << resourceToString(pair.first) << ": " << pair.second << "\n";
+        Player(string name) : name(name) {
+            cards[Resource::Wood] = 0;
+            cards[Resource::Brick] = 0;
+            cards[Resource::Sheep] = 0;
+            cards[Resource::Wheat] = 0;
+            cards[Resource::Ore] = 0;
         }
-    }
 
-    void placeSettelemnt(vector<string> places,vector<int> placesNum,Board board);
-    void placeRoad(vector<string> places,vector<int> placesNum,Board board);
-    int rollDice();
-    void endTurn();
-    void trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven);
-    void buyDevelopmentCard();
-    void printPoints();
+        void addResource(Resource resource, int amount) {
+            cards[resource] += amount;
+        }
+
+        void printResources() const {
+            std::cout << "Resources of " << name << ":\n";
+            for (const auto& pair : cards) {
+                std::cout << resourceToString(pair.first) << ": " << pair.second << "\n";
+            }
+        }
+
+        void placeSettelemnt(vector<string> places,vector<int> placesNum,Board board);
+        void placeRoad(vector<string> places,vector<int> placesNum,Board board);
+        int rollDice();
+        void endTurn();
+        Board getBoard();
+        void trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven);
+        void buyDevelopmentCard();
+        void printPoints();
 };

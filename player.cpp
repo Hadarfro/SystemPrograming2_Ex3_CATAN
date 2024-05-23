@@ -8,23 +8,18 @@
 #include "player.hpp"
 
 using namespace std;
-class Player {
-    public:
-        string name;
-        map<Resource, int> resources;
-        Board board;
-        Board getBoard(){
+        Board Player::getBoard(){
             return board;
         }
-        void placeSettelemnt(vector<string> places,vector<int> placesNum,Board board){
+        void Player::placeSettelemnt(vector<string> places,vector<int> placesNum,Board board){
             
         }
 
-        void placeRoad(vector<string> places,vector<int> placesNum,Board board){
+        void Player::placeRoad(vector<string> places,vector<int> placesNum,Board board){
 
         }
 
-        int rollDice(){
+        int Player::rollDice(){
             int roll = (std::rand() % 6 + 1) + (std::rand() % 6 + 1); // Rolling two six-sided dice
                 std::cout << "Dice roll: " << roll << "\n";
 
@@ -37,22 +32,21 @@ class Player {
                 }
         }
 
-        void endTurn(){
+        void Player::endTurn(){
 
         }
 
-        void trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven){
+        void Player::trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven){
 
         }
 
-        void buyDevelopmentCard(){
+        void Player::buyDevelopmentCard(){
 
         }
 
-        void printPoints(){
+        void Player::printPoints(){
 
         }
-};
 
 // Game class
 class Game {
