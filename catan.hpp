@@ -14,15 +14,14 @@ class Catan {
         Board board;
         vector<Player> players;
         size_t currentPlayer;
+        int numPlayers;
 
     public:
-    Catan(Player p1,Player p2);
-    Catan(Player p1,Player p2,Player p3);
-    Catan(Player p1,Player p2,Player p3,Player p4);
+        Catan(Player p1,Player p2,Player p3,Player p4);
 
-    void ChooseStartingPlayer();
-    Board getBoard();
-    void printWinner();
-    void Catan::printGameState() const;
-    int Catan::rollDice();
+        void ChooseStartingPlayer();
+        Board getBoard();
+        void printWinner();
+        void Catan::printGameState() const;
+        int Catan::rollDice();
 };

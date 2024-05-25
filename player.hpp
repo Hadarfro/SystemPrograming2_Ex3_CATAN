@@ -27,9 +27,9 @@ string resourceToString(Resource resource) {
 // Player class
 class Player {
     private:
-    string name;
-    map<Resource, int> cards;
-    Board board;
+        string name;
+        map<Resource, int> cards;
+        Board board;
     public:
         Player() : name("") {
             cards[Resource::Wood] = 0;

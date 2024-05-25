@@ -9,20 +9,22 @@
 #include "player.hpp"
 
 
-Catan::Catan(Player p1,Player p2){//check if needed init the players that dont play!!!!!!!!! 
-    players[1] = p1;
-    players[2] = p2;
-}
-Catan::Catan(Player p1,Player p2,Player p3){
-    players[1] = p1;
-    players[2] = p2;
-    players[3] = p3;
-}
-Catan::Catan(Player p1,Player p2,Player p3,Player p4){
+// Constructor with default arguments
+Catan::Catan(Player p1, Player p2, Player p3 = Player(), Player p4 = Player()) {
+    players[0] = Player();  // Initialize all players to default Player objects
     players[1] = p1;
     players[2] = p2;
     players[3] = p3;
-    players[4] = p4;
+    if (p4.getName() != "") {  // Check if a fourth player is provided
+        players[4] = p4;
+        numPlayers = 4;
+    } 
+    else if (p3.getName() != "") {  // Check if a third player is provided
+        numPlayers = 3;
+    } 
+    else {  // Only two players provided
+        numPlayers = 2;
+    }
 }
 
 void Catan::printGameState() const {
