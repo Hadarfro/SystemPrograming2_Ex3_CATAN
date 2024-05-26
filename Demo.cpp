@@ -20,16 +20,16 @@ int main(){
     myCatan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Amit.
     Board board = myCatan.getBoard(); // get the board of the game.
     board.printBoard();
-    vector<string> places = {"Forest", "Hills"};
+    vector<string> places = {"Wood", "Brick"};
     vector<int> placesNum = {5, 6};
     p1.placeSettelemnt(places, placesNum, board);
     p1.placeRoad(places, placesNum, board);
-    vector<string> places = {"Agricultural Land", "Desert"};
+    vector<string> places = {"Wheat", "Desert"};
     vector<int> placesNum = {3, 4};
     p1.placeSettelemnt(places, placesNum, board);
     p1.placeRoad(places, placesNum, board); // p1 chooses Forest, hills, Agricultural Land, Desert with numbers 5, 6, 3, 4.
 
-    vector<string> places = {"Mountains", "Pasture Land"};
+    vector<string> places = {"Ore", "Sheep"};
     vector<int> placesNum = {4, 9};
     p2.placeSettelemnt(places, placesNum, board);
     p2.placeRoad(places, placesNum, board);
@@ -41,16 +41,16 @@ int main(){
     {
         cout << e.what() << endl;
     }
-    vector<string> places = {"Forest", "Pasture Land"};
+    vector<string> places = {"Wood", "Sheep"};
     vector<int> placesNum = {5, 9};
     p2.placeSettelemnt(places, placesNum, board);
     p2.placeRoad(places, placesNum, board); // p2 chooses Mountains, Pasture Land, and Forest with numbers 4, 9, 5.
 
-    vector<string> places = {"Mountains", "Pasture Land"};
+    vector<string> places = {"Ore", "Sheep"};
     vector<int> placesNum = {3, 8};
     p3.placeSettelemnt(places, placesNum, board);
     p3.placeRoad(places, placesNum, board);
-    vector<string> places = {"Agricultural Land", "Pasture Land"};
+    vector<string> places = {"Wheat", "Sheep"};
     vector<int> placesNum = {3, 9};
     p3.placeSettelemnt(places, placesNum, board);
     p3.placeRoad(places, placesNum, board); // p3 chooses Mountains, Pasture Land, Agricultural Land, Pasture Land with numbers 3, 8, 3, 9.
