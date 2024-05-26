@@ -17,11 +17,10 @@ class Catan {
         int numPlayers;
 
     public:
-        Catan(Player p1,Player p2,Player p3,Player p4);
-
+        Catan(Player p1,Player p2, Player p3 = Player(), Player p4 = Player());
         void ChooseStartingPlayer();
         Board getBoard();
         void printWinner();
-        void Catan::printGameState() const;
-        int Catan::rollDice();
+        void printGameState() const;
+        int rollDice();
 };

@@ -53,12 +53,12 @@ int Catan::rollDice(){
     int roll = (std::rand() % 6 + 1) + (std::rand() % 6 + 1); // Rolling two six-sided dice
     std::cout << "Dice roll: " << roll << "\n";
 
-    for (const auto& tile : board.tiles) {
-        if (tile.number == roll) {
-            for (size_t i = 0;i < 3;i++) {
-                players[i].addResource(tile.resource,1); // Simplified resource distribution
-            }
-        }
-    }
+    // for (const auto& tile : board.tiles) {
+    //     if (board.tiles. == roll) {
+    //         for (size_t i = 0;i < 3;i++) {
+    //             players[i].addResource(tile.resource,1); // Simplified resource distribution
+    //         }
+    //     }
+    // }
     return roll;
 }

@@ -14,7 +14,7 @@ using namespace std;
 int main(){
     Player p1("Hadar");
     Player p2("Shir");
-    Player p3("Roni");
+    Player p3("Roni");    
     Catan myCatan(p1, p2, p3);
     // Starting of the game. Every player places two settlements and two roads.
     myCatan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Amit.

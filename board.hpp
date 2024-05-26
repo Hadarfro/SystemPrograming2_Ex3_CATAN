@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 // Enum for resource types
@@ -28,29 +29,54 @@ public:
     Tile(Resource resource, int number) : resource(resource), number(number) {}
 };
 
-// Struct to represent a vertex on the board
-struct Vertex {
-    vector<Tile> tiles;
-    int owner; // Player who owns the building
-};
+//Vertex class
+class Vertex {
+    public:
+        int id;
+        vector<Tile> tiles;
+        vector<int> neighbors;
+        vector<int> edges;
 
-// Struct to represent an edge on the board
-struct Edge {
-    Resource resource;
-    int owner; // Player who owns the road
-};
+        Vertex(int id) : id(id) {}
+
+        void addTile(const Tile& tile) {
+            tiles.push_back(tile);
+        }
+
+        void addNeighbor(int neighborId) {
+            neighbors.push_back(neighborId);
+        }
+
+        void addEdge(int edgeId) {
+            edges.push_back(edgeId);
+        }
+    };
+
+// Edge class
+class Edge {
+    public:
+        int id;
+        int vertex1;
+        int vertex2;
+
+        Edge(int id, int vertex1, int vertex2)
+            : id(id), vertex1(vertex1), vertex2(vertex2) {}
+    };
 
 // Board class
 class Board {
     private:
-        std::vector<std::vector<Vertex>> vertices; // 2D vector to store vertices
-        std::vector<std::vector<Edge>> edges; // 2D vector to store edges
+        vector<vector<Vertex>> vertices; // 2D vector to store vertices
+        vector<vector<Edge>> edges; // 2D vector to store edges
     public:
-        vector<vector<Tile>> tiles;
+        unordered_map<int, Vertex> vertices;
+        unordered_map<int, Edge> edges;
+        int edgeCounter;
+
 
         Board() {
             // Simplified board with fixed resources and numbers
-            tiles = {
+            vertices = {
                {Tile(Resource::Wood, 11), Tile(Resource::Brick, 2), Tile(Resource::Sheep, 3)},
                 {Tile(Resource::Wheat, 4), Tile(Resource::Ore, 5), Tile(Resource::Wood, 6),
                 Tile(Resource::Brick, 11)}, {Tile(Resource::Sheep, 8), Tile(Resource::Wheat, 9),
