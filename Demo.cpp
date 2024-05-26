@@ -56,23 +56,19 @@ int main(){
     p3.placeRoad(places, placesNum, board); // p3 chooses Mountains, Pasture Land, Agricultural Land, Pasture Land with numbers 3, 8, 3, 9.
 
     // p1 has wood,bricks, and wheat, p2 has wood, ore, and wool, p3 has ore, wool, wheat.
-    int roll = p1.rollDice();                                    // Lets say it's print 4. Then, p2 gets ore from the mountations.
-    myCatan.takeCards(roll);
+    p1.rollDice();                                    // Lets say it's print 4. Then, p2 gets ore from the mountations.
     p1.placeRoad({"Forest", "Hills"}, {5, 6}, board); // p1 continues to build a road.
     p1.endTurn();                                     // p1 ends his turn.
 
-    roll = p2.rollDice(); // Lets say it's print 9. Then, p3 gets wool from the Pasture Land, p2 gets wool from the Pasture Land.
-    myCatan.takeCards(roll);
+    p2.rollDice(); // Lets say it's print 9. Then, p3 gets wool from the Pasture Land, p2 gets wool from the Pasture Land.
     p2.endTurn();  // p2 ends his turn.
 
-    roll = p3.rollDice(); // Lets say it's print 3. Then, p3 gets wheat from the Agricultural Land and Ore from the Mountains, p1 gets wheat from the Agricultural Land.
-    myCatan.takeCards(roll);
+    p3.rollDice(); // Lets say it's print 3. Then, p3 gets wheat from the Agricultural Land and Ore from the Mountains, p1 gets wheat from the Agricultural Land.
     p3.endTurn();  // p3 ends his turn.
 
     try
     {
-        roll = p2.rollDice(); // p2 tries to roll the dice again, but it's not his turn.
-        myCatan.takeCards(roll);
+        p2.rollDice(); // p2 tries to roll the dice again, but it's not his turn.
     }
     catch (const std::exception &e)
     {
