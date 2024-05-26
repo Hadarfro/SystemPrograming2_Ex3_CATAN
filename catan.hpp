@@ -22,5 +22,5 @@ class Catan {
         Board getBoard();
         void printWinner();
         void printGameState() const;
-        int rollDice();
+        void takeCards(int roll);
 };

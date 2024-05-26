@@ -14,13 +14,13 @@ Catan::Catan(Player p1, Player p2, Player p3 = Player(), Player p4 = Player()) {
     players[0] = Player();  // Initialize all players to default Player objects
     players[1] = p1;
     players[2] = p2;
-    players[3] = p3;
-    if (p4.getName() != "") {  // Check if a fourth player is provided
+    if (p3.getName() != "") {  // Check if a fourth player is provided
+        players[3] = p3;
+        numPlayers = 3;
+    } 
+    else if (p4.getName() != "") {  // Check if a third player is provided
         players[4] = p4;
         numPlayers = 4;
-    } 
-    else if (p3.getName() != "") {  // Check if a third player is provided
-        numPlayers = 3;
     } 
     else {  // Only two players provided
         numPlayers = 2;
@@ -49,16 +49,13 @@ void Catan::printWinner(){
 
 }
 
-int Catan::rollDice(){
-    int roll = (std::rand() % 6 + 1) + (std::rand() % 6 + 1); // Rolling two six-sided dice
-    std::cout << "Dice roll: " << roll << "\n";
+void Catan::takeCards(int roll){
 
-    // for (const auto& tile : board.tiles) {
-    //     if (board.tiles. == roll) {
-    //         for (size_t i = 0;i < 3;i++) {
-    //             players[i].addResource(tile.resource,1); // Simplified resource distribution
-    //         }
-    //     }
-    // }
-    return roll;
+    for (const auto& tile : board.getTiles()) {
+        if (tile.number == roll) {
+            for (size_t i = 0;i < 3;i++) {
+                players[i].addResource(tile.resource,1); // Simplified resource distribution
+            }
+        }
+    }
 }
