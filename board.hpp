@@ -152,7 +152,6 @@ class Board {
             vertices[52].addAdjacentTile();
             vertices[53].addAdjacentTile();
 
-
 }
 
         vector<Tile> getTiles(){
