@@ -103,12 +103,11 @@ class Board {
             vertices[5].addAdjacentTile({tile1});
             vertices[6].addAdjacentTile({tile1});
             vertices[7].addAdjacentTile({tile3,tile7});
-            vertices[8].addAdjacentTile({tile3,tile6,tile7});
-            vertices[8].addAdjacentTile({});
-            vertices[9].addAdjacentTile();
-            vertices[10].addAdjacentTile();
-            vertices[11].addAdjacentTile();
-            vertices[12].addAdjacentTile();
+            vertices[8].addAdjacentTile({tile3,tile6,tile7});;
+            vertices[9].addAdjacentTile({tile2,tile3,tile6});
+            vertices[10].addAdjacentTile({tile2,tile5,tile6});
+            vertices[11].addAdjacentTile({tile2,tile1,tile5});
+            vertices[12].addAdjacentTile({tile1,tile4,tile5});
             vertices[13].addAdjacentTile();
             vertices[14].addAdjacentTile();
             vertices[15].addAdjacentTile();
