@@ -25,11 +25,23 @@ string resourceToString(Resource resource) {
     return "Unknown";
 }
 
+Resource stringToResource(const string& resourceStr) {
+    if (resourceStr == "Wood") return Resource::Wood;
+    if (resourceStr == "Brick") return Resource::Brick;
+    if (resourceStr == "Sheep") return Resource::Sheep;
+    if (resourceStr == "Wheat") return Resource::Wheat;
+    if (resourceStr == "Ore") return Resource::Ore;
+    return Resource::None;
+}
+
 // Player class
 class Player {
     private:
         string name;
         map<Resource, int> cards;
+        int SettelemntAmount;
+        int roadAmount;
+        int points;
         Board board;
     public:
         Player(string name = "") : name(name) {
@@ -38,6 +50,9 @@ class Player {
             cards[Resource::Sheep] = 0;
             cards[Resource::Wheat] = 0;
             cards[Resource::Ore] = 0;
+            SettelemntAmount = 2;
+            roadAmount = 2;
+            points = 2;
         }
 
         void addResource(Resource resource, int amount) {
@@ -51,8 +66,8 @@ class Player {
             }
         }
 
-        void placeSettelemnt(vector<string> places,vector<int> placesNum,Board board);
-        void placeRoad(vector<string> places,vector<int> placesNum,Board board);
+        void placeSettelemnt(int v,Board board);
+        void placeRoad(int edge,Board board);
         void endTurn();
         Board getBoard();
         int rollDice();  
@@ -60,4 +75,7 @@ class Player {
         void trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven);
         void buyDevelopmentCard();
         void printPoints();
+        bool hasResource(Resource resource, int amount);
+        void addDevelopmentCard(const DevelopmentCard& card);
+        void removeResource(Resource resource, int amount);
 };

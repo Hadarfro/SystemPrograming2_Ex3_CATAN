@@ -33,18 +33,20 @@ class Tile {
             neighbors = myneighbors;
             vertcies = myvertcies;
         }
+        int getNumber(){
+            return number;
+        }
 };
 
 // Vertex class
-class Vertex {
-    private:
-        Player player;
-        vector<vector<Tile>> adjacentTiles;
+class Vertex {  
     public:
+        string owner;
+        vector<vector<Tile>> adjacentTiles;
         void addAdjacentTile(vector<Tile> tile) {
             adjacentTiles.push_back(tile);
         }
-        Vertex(Player player,vector<Tile> adjacentTiles = {}){
+        Vertex(string owner = "",vector<Tile> adjacentTiles = {}){
            
         }
 };
@@ -137,24 +139,29 @@ class Board {
             vertices[39].addAdjacentTile({tile16,tile19});
             vertices[40].addAdjacentTile({tile15,tile16,tile19});
             vertices[41].addAdjacentTile({tile15,tile18,tile19});
-            vertices[42].addAdjacentTile();
-            vertices[43].addAdjacentTile();
-            vertices[44].addAdjacentTile();
-            vertices[45].addAdjacentTile();
-            vertices[46].addAdjacentTile();
-            vertices[47].addAdjacentTile();
-            vertices[48].addAdjacentTile();
-            vertices[49].addAdjacentTile();
-            vertices[50].addAdjacentTile();
-            vertices[51].addAdjacentTile();
-            vertices[52].addAdjacentTile();
-            vertices[53].addAdjacentTile();
+            vertices[42].addAdjacentTile({tile14,tile15,tile18});
+            vertices[43].addAdjacentTile({tile14,tile18,tile17});
+            vertices[44].addAdjacentTile({tile13,tile14,tile17});
+            vertices[45].addAdjacentTile({tile13,tile17});
+            vertices[46].addAdjacentTile({tile13});
+            vertices[47].addAdjacentTile({tile17});
+            vertices[48].addAdjacentTile({tile17});
+            vertices[49].addAdjacentTile({tile17,tile18});
+            vertices[50].addAdjacentTile({tile18});
+            vertices[51].addAdjacentTile({tile18,tile19});
+            vertices[52].addAdjacentTile({tile19});
+            vertices[53].addAdjacentTile({tile19});
 
 }
 
         vector<Tile> getTiles(){
             return tiles;
         }
+
+        vector<Vertex> getVertcis(){
+            return vertices;
+        }
+
 
         void printBoard() const {
             for (const auto& tile : tiles) {

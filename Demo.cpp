@@ -13,43 +13,45 @@ using namespace std;
 
 int main(){
     Player p1("Hadar");
-    Player p2("Shir");
-    Player p3("Roni");    
+    Player p2("hila");
+    Player p3("shira");    
     Catan myCatan(p1, p2, p3);
     // Starting of the game. Every player places two settlements and two roads.
     myCatan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Amit.
     Board board = myCatan.getBoard(); // get the board of the game.
     board.printBoard();
-    vector<string> places = {"Wood", "Brick"};
-    vector<int> placesNum = {5, 6};
-    p1.placeSettelemnt(places, placesNum, board);
-    p1.placeRoad(places, placesNum, board);
-    vector<string> places = {"Wheat", "Desert"};
-    vector<int> placesNum = {3, 4};
-    p1.placeSettelemnt(places, placesNum, board);
-    p1.placeRoad(places, placesNum, board); // p1 chooses Forest, hills, Agricultural Land, Desert with numbers 5, 6, 3, 4.
+    // vector<string> places = {"Wood", "Brick"};
+    // vector<int> placesNum = {5, 6};
+    int vertex1 = 34;
+    int edge1 = 15;
+    p1.placeSettelemnt(vertex1, board);
+    p1.placeRoad(edge1, board);
+     int vertex2 = 46;
+    int edge2 = 12;
+    p1.placeSettelemnt(vertex2, board);
+    p1.placeRoad(edge2, board); // p1 chooses Forest, hills, Agricultural Land, Desert with numbers 5, 6, 3, 4.
 
-    vector<string> places = {"Ore", "Sheep"};
-    vector<int> placesNum = {4, 9};
-    p2.placeSettelemnt(places, placesNum, board);
-    p2.placeRoad(places, placesNum, board);
+     int vertex3 = 31;
+    int edge3 = 22;
+    p2.placeSettelemnt(vertex3, board);
+    p2.placeRoad(edge3, board);
     try
     {
-        p3.placeSettelemnt(places, placesNum, board); // p3 tries to place a settlement in the same location as p2.
+        p3.placeSettelemnt(edge3, board); // p3 tries to place a settlement in the same location as p2.
     }
     catch (const std::exception &e)
     {
         cout << e.what() << endl;
     }
-    vector<string> places = {"Wood", "Sheep"};
-    vector<int> placesNum = {5, 9};
-    p2.placeSettelemnt(places, placesNum, board);
-    p2.placeRoad(places, placesNum, board); // p2 chooses Mountains, Pasture Land, and Forest with numbers 4, 9, 5.
+     int vertex4 = 50;
+    int edge4 = 42;
+    p2.placeSettelemnt(vertex4, board);
+    p2.placeRoad(edge4, board); // p2 chooses Mountains, Pasture Land, and Forest with numbers 4, 9, 5.
 
-    vector<string> places = {"Ore", "Sheep"};
-    vector<int> placesNum = {3, 8};
-    p3.placeSettelemnt(places, placesNum, board);
-    p3.placeRoad(places, placesNum, board);
+     int vertex5 = 5;
+    int edge5 = 37;
+    p3.placeSettelemnt(vertex5, board);
+    p3.placeRoad(edge5, board);
     vector<string> places = {"Wheat", "Sheep"};
     vector<int> placesNum = {3, 9};
     p3.placeSettelemnt(places, placesNum, board);
