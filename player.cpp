@@ -4,6 +4,7 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include <cstring>
 #include "board.hpp"
 #include "player.hpp"
 #include "catan.hpp"
@@ -17,7 +18,7 @@ const string Player::getName() const{
     return name;
 }
 void Player::placeSettelemnt(int v,Board board){
-    if(board.getVertcis()[v].owner != ""){
+    if(strcmp(board.getVertcis()[v].owner.getName().c_str(),"") != 0){
         cout << "place is taken" << endl;
         return;
     }
@@ -51,9 +52,9 @@ void Player::removeResource(Resource resource, int amount) {
     }
 }
 
-void Player::addDevelopmentCard(const DevelopmentCard& card) {
-    //developmentCards.push_back(card);
-}
+// void Player::addDevelopmentCard(const DevelopmentCard& card) {
+//     //developmentCards.push_back(card);
+// }
 
 void Player::endTurn(){
 

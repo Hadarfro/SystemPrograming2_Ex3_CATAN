@@ -1,11 +1,12 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include <map>
 #include <string>
 #include <ctime>
 #include <cstdlib>
-#include "player.hpp"
-#include "board.hpp"
+#include "catan.hpp"
+
 
 using namespace std;
 

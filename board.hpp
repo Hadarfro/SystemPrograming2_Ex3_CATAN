@@ -1,14 +1,19 @@
+#ifndef BOARD_HPP
+#define BOARD_HPP
 #include <iostream>
 #include <vector>
 #include <unordered_map>
-#include "player.hpp"
+#include <ctime>
+#include <string>
+#include <cstdlib>
+#include "catan.hpp"
 
 using namespace std;
 // Enum for resource types
-enum class Resource { Wood, Brick, Sheep, Wheat, Ore, Sea,Desert,None };
+// enum class Resource { Wood, Brick, Sheep, Wheat, Ore,Sea ,Desert,None };
 
 // Function to get string representation of resource
-string resourceToString(Resource resource) {
+std::string resourceToString(Resource resource) {
     switch (resource) {
         case Resource::Wood: return "Wood";
         case Resource::Brick: return "Brick";
@@ -16,7 +21,9 @@ string resourceToString(Resource resource) {
         case Resource::Wheat: return "Wheat";
         case Resource::Ore: return "Ore";
         case Resource::Sea: return "Sea";
+        case Resource::None: return "None";
         case Resource::Desert: return "Desert";
+        default: return "Unknown";
     }
     return "Unknown";
 }
@@ -41,12 +48,14 @@ class Tile {
 // Vertex class
 class Vertex {  
     public:
-        string owner;
-        vector<vector<Tile>> adjacentTiles;
+        Player owner;
+        vector<Tile> adjacentTiles;
         void addAdjacentTile(vector<Tile> tile) {
-            adjacentTiles.push_back(tile);
+            for(size_t i = 0;i < tile.size();i++){
+                adjacentTiles.push_back(tile[i]);
+            }
         }
-        Vertex(string owner = "",vector<Tile> adjacentTiles = {}){
+        Vertex(Player owner = Player(),vector<Tile> adjacentTiles = {}){
            
         }
 };
@@ -170,3 +179,4 @@ class Board {
         }
         void distributeResources(int roll);
 };
+#endif // BOARD_HPP

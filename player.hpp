@@ -10,7 +10,7 @@
 using namespace std;
 
 // Enum for resource types
-enum class Resource { Wood, Brick, Sheep, Wheat, Ore,Devloping, None };
+enum class Resource { Wood, Brick, Sheep, Wheat, Ore,Sea ,Desert,None };
 
 // Function to get string representation of resource
 string resourceToString(Resource resource) {
@@ -44,7 +44,7 @@ class Player {
         int points;
         Board board;
     public:
-        Player(string name = "") : name(name) {
+        Player(string myName = "") : name(myName) {
             cards[Resource::Wood] = 0;
             cards[Resource::Brick] = 0;
             cards[Resource::Sheep] = 0;
@@ -76,6 +76,6 @@ class Player {
         void buyDevelopmentCard();
         void printPoints();
         bool hasResource(Resource resource, int amount);
-        void addDevelopmentCard(const DevelopmentCard& card);
+       // void addDevelopmentCard(const DevelopmentCard& card);
         void removeResource(Resource resource, int amount);
 };
