@@ -7,26 +7,10 @@
 #include <string>
 #include <cstdlib>
 #include "catan.hpp"
+#include "resource.hpp"
 
+class Player;
 using namespace std;
-// Enum for resource types
-// enum class Resource { Wood, Brick, Sheep, Wheat, Ore,Sea ,Desert,None };
-
-// Function to get string representation of resource
-std::string resourceToString(Resource resource) {
-    switch (resource) {
-        case Resource::Wood: return "Wood";
-        case Resource::Brick: return "Brick";
-        case Resource::Sheep: return "Sheep";
-        case Resource::Wheat: return "Wheat";
-        case Resource::Ore: return "Ore";
-        case Resource::Sea: return "Sea";
-        case Resource::None: return "None";
-        case Resource::Desert: return "Desert";
-        default: return "Unknown";
-    }
-    return "Unknown";
-}
 
 
 // Tile class
@@ -48,15 +32,16 @@ class Tile {
 // Vertex class
 class Vertex {  
     public:
-        Player owner;
+        Player& owner;
         vector<Tile> adjacentTiles;
         void addAdjacentTile(vector<Tile> tile) {
             for(size_t i = 0;i < tile.size();i++){
                 adjacentTiles.push_back(tile[i]);
             }
         }
-        Vertex(Player owner = Player(),vector<Tile> adjacentTiles = {}){
-           
+        Vertex(Player& o, std::vector<Tile> adjacentTiles = {})
+        : adjacentTiles(adjacentTiles), owner(o) {
+            // owner is not initialized here
         }
 };
 
@@ -161,13 +146,13 @@ class Board {
             vertices[52].addAdjacentTile({tile19});
             vertices[53].addAdjacentTile({tile19});
 
-}
+        }
 
-        vector<Tile> getTiles(){
+        vector<Tile>& getTiles(){
             return tiles;
         }
 
-        vector<Vertex> getVertcis(){
+        vector<Vertex>& getVertcis(){
             return vertices;
         }
 
@@ -177,6 +162,6 @@ class Board {
                 //std::cout << resourceToString(tile.resource) << " (" << tile.number << ")\n";
             }
         }
-        void distributeResources(int roll);
+        void Board::distributeResources(int roll); 
 };
 #endif // BOARD_HPP

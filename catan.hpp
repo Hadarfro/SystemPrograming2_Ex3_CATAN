@@ -5,8 +5,9 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
-#include "catan.hpp"
-
+#include "player.hpp"
+#include "board.hpp"
+#include "cards.hpp"
 
 using namespace std;
 

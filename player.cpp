@@ -5,20 +5,18 @@
 #include <ctime>
 #include <cstdlib>
 #include <cstring>
-#include "board.hpp"
 #include "player.hpp"
-#include "catan.hpp"
-#include "cards.hpp"
+#include "board.hpp"
 
 using namespace std;
-Board Player::getBoard(){
+Board& Player::getBoard(){
     return board;
 }
 const string Player::getName() const{
     return name;
 }
 void Player::placeSettelemnt(int v,Board board){
-    if(strcmp(board.getVertcis()[v].owner.getName().c_str(),"") != 0){
+    if(strcmp(board.getVertcis()[v].owner.getName().c_str(),"") != 0){ 
         cout << "place is taken" << endl;
         return;
     }
@@ -26,7 +24,7 @@ void Player::placeSettelemnt(int v,Board board){
         cout << "no settelments to place" << endl;
         return;
     }
-    board.getVertcis()[v].owner = this->name;
+    //board.getVertcis()[v].owner.getName() = name;
     this->SettelemntAmount--;
 }
 
@@ -100,5 +98,6 @@ void Player::printPoints(){
 int Player::rollDice(){
     int roll = (rand() % 6 + 1) + (rand() % 6 + 1); // Rolling two six-sided dice
     cout << "Dice roll: " << roll << "\n";
+    board.distributeResources(roll);
     return roll;
 }
