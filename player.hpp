@@ -21,20 +21,11 @@ class Player {
         int SettelemntAmount;
         int roadAmount;
         int points;
-        Board& board;
+        const Board& board;
     public:
-        Player(const std::string& myName, Board& b) : name(myName), board(b), SettelemntAmount(2), roadAmount(2), points(2) {
-            cards[Resource::Wood] = 0;
-            cards[Resource::Brick] = 0;
-            cards[Resource::Sheep] = 0;
-            cards[Resource::Wheat] = 0;
-            cards[Resource::Ore] = 0;
-        }
+        Player(const string& myName = "",const Board& b = Board());
 
-        void addResource(Resource resource, int amount) {
-            cards[resource] += amount;
-        }
-
+        void addResource(Resource resource, int amount);
         void printResources() const {
             std::cout << "Resources of " << name << ":\n";
             for (const auto& pair : cards) {
@@ -49,7 +40,7 @@ class Player {
         void placeSettelemnt(int v,Board board);
         void placeRoad(int edge,Board board);
         void endTurn();
-        Board& getBoard();
+        const Board& getBoard();
         int rollDice();  
         const string getName() const;
         void trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven);

@@ -9,7 +9,20 @@
 #include "board.hpp"
 
 using namespace std;
-Board& Player::getBoard(){
+
+Player::Player(const string& myName,const Board& b) : name(myName), board(b), SettelemntAmount(2), roadAmount(2), points(2) {
+    cards[Resource::Wood] = 0;
+    cards[Resource::Brick] = 0;
+    cards[Resource::Sheep] = 0;
+    cards[Resource::Wheat] = 0;
+    cards[Resource::Ore] = 0;
+}
+
+void Player::addResource(Resource resource, int amount) {
+    cards[resource] += amount;
+}
+
+const Board& Player::getBoard(){
     return board;
 }
 const string Player::getName() const{

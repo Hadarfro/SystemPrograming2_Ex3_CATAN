@@ -24,7 +24,7 @@ class Tile {
             neighbors = myneighbors;
             vertcies = myvertcies;
         }
-        int getNumber(){
+        int getNumber() const{
             return number;
         }
 };
@@ -32,14 +32,14 @@ class Tile {
 // Vertex class
 class Vertex {  
     public:
-        Player& owner;
+        const Player& owner;
         vector<Tile> adjacentTiles;
         void addAdjacentTile(vector<Tile> tile) {
             for(size_t i = 0;i < tile.size();i++){
                 adjacentTiles.push_back(tile[i]);
             }
         }
-        Vertex(Player& o, std::vector<Tile> adjacentTiles = {})
+        Vertex(const Player& o = Player(), vector<Tile> adjacentTiles = {})
         : adjacentTiles(adjacentTiles), owner(o) {
             // owner is not initialized here
         }
@@ -162,6 +162,6 @@ class Board {
                 //std::cout << resourceToString(tile.resource) << " (" << tile.number << ")\n";
             }
         }
-        void Board::distributeResources(int roll); 
+        void distributeResources(int roll) const; 
 };
 #endif // BOARD_HPP

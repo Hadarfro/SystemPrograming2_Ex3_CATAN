@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void Board::distributeResources(int roll) {
+void Board::distributeResources(int roll) const {
     for (int i = 0; i < vertices.size();i++) {
         if (vertices[i].owner.getName() != "") {
             for (int j = 0;j < vertices[i].adjacentTiles.size();j++) {
