@@ -1,5 +1,4 @@
-#ifndef PLAYER_HPP
-#define PLAYER_HPP
+#pragma once
 #include <iostream>
 #include <vector>
 #include <map>
@@ -9,6 +8,7 @@
 #include "catan.hpp"
 #include "resource.hpp"
 #include "board.hpp"
+#include "player.hpp"
 
 class Board;
 using namespace std;
@@ -17,15 +17,15 @@ using namespace std;
 class Player {
     private:
         string name;
-        map<Resource, int> cards;
+        mutable map<Resource, int> cards;
         int SettelemntAmount;
         int roadAmount;
         int points;
-        const Board& board;
+        const Board* board;
     public:
-        Player(const string& myName = "",const Board& b = Board());
+        Player(const string& name = "", const Board* b = nullptr);
 
-        void addResource(Resource resource, int amount);
+        void addResource(Resource resource, int amount) const;
         void printResources() const {
             std::cout << "Resources of " << name << ":\n";
             for (const auto& pair : cards) {
@@ -37,10 +37,11 @@ class Player {
             return name;
         }
 
+
         void placeSettelemnt(int v,Board board);
         void placeRoad(int edge,Board board);
         void endTurn();
-        const Board& getBoard();
+        const Board* getBoard();
         int rollDice();  
         const string getName() const;
         void trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven);
@@ -50,4 +51,3 @@ class Player {
        // void addDevelopmentCard(const DevelopmentCard& card);
         void removeResource(Resource resource, int amount);
 };
-#endif // PLAYER_HPP

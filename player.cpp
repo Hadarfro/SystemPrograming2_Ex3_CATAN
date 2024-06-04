@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Player::Player(const string& myName,const Board& b) : name(myName), board(b), SettelemntAmount(2), roadAmount(2), points(2) {
+Player::Player(const string& myName, const Board* b) : name(myName),board(b), SettelemntAmount(2), roadAmount(2), points(2) {
     cards[Resource::Wood] = 0;
     cards[Resource::Brick] = 0;
     cards[Resource::Sheep] = 0;
@@ -18,18 +18,19 @@ Player::Player(const string& myName,const Board& b) : name(myName), board(b), Se
     cards[Resource::Ore] = 0;
 }
 
-void Player::addResource(Resource resource, int amount) {
+void Player::addResource(Resource resource, int amount) const {
     cards[resource] += amount;
 }
 
-const Board& Player::getBoard(){
+const Board* Player::getBoard(){
     return board;
 }
 const string Player::getName() const{
     return name;
 }
 void Player::placeSettelemnt(int v,Board board){
-    if(strcmp(board.getVertcis()[v].owner.getName().c_str(),"") != 0){ 
+    size_t u = (size_t) v;
+    if(board.getVertcis()[u].ownerName!= ""){ 
         cout << "place is taken" << endl;
         return;
     }
@@ -50,7 +51,7 @@ void Player::placeRoad(int edge,Board board){
     //     cout << "place is taken" << endl;
     // }
     // board.getEdges()[v].owner = this->name;
-    this->roadAmount;
+    //this->roadAmount;
 }
 
 bool Player::hasResource(Resource resource, int amount) {
@@ -111,6 +112,6 @@ void Player::printPoints(){
 int Player::rollDice(){
     int roll = (rand() % 6 + 1) + (rand() % 6 + 1); // Rolling two six-sided dice
     cout << "Dice roll: " << roll << "\n";
-    board.distributeResources(roll);
+    board->distributeResources(roll,this);
     return roll;
 }

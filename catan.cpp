@@ -10,8 +10,8 @@
 
 
 // Constructor with default arguments
-Catan::Catan(Player p1, Player p2, Player p3 = Player(), Player p4 = Player()) {
-    players[0] = Player();  // Initialize all players to default Player objects
+Catan::Catan(const Player& p1,const Player& p2,const Player& p3 = Player(),const Player& p4 = Player()) {
+    players[0] = NULL;  // Initialize all players to default Player objects
     players[1] = p1;
     players[2] = p2;
     if (p3.getName() != "") {  // Check if a fourth player is provided
