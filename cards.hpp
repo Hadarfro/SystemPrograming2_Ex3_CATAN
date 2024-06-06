@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include "resource.hpp"
 using namespace std;
 
 // Base Card class
@@ -17,35 +18,34 @@ public:
 // Derived ResourceCard class
 class ResourceCard : public Card {
 public:
-    enum class ResourceType { WOOD, BRICK, SHEEP, WHEAT, ORE };
     
-    ResourceCard(ResourceType type) : type(type) {}
+    ResourceCard(Resource type) : type(type) {}
 
     string getType() const override {
         return "Resource";
     }
 
-    ResourceType getResourceType() const {
+    Resource getResourceType() const {
         return type;
     }
 
     void display() const override {
-        cout << "Resource Card: " << resourceTypeToString(type) << endl;
+        cout << "Resource Card: " << resourceToString(type) << endl;
     }
 
 private:
-    ResourceType type;
+    Resource type;
 
-    string resourceTypeToString(ResourceType type) const {
-        switch(type) {
-            case ResourceType::WOOD: return "Wood";
-            case ResourceType::BRICK: return "Brick";
-            case ResourceType::SHEEP: return "Sheep";
-            case ResourceType::WHEAT: return "Wheat";
-            case ResourceType::ORE: return "Ore";
-            default: return "Unknown";
-        }
-    }
+    // string resourceTypeToString(Resource type) const {
+    //     switch(type) {
+    //         case Resource::Wood: return "Wood";
+    //         case Resource::Brick: return "Brick";
+    //         case Resource::Sheep: return "Sheep";
+    //         case Resource::Wheat: return "Wheat";
+    //         case Resource::Ore: return "Ore";
+    //         default: return "Unknown";
+    //     }
+    // }
 };
 
 // Derived DevelopmentCard class

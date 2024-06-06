@@ -30,7 +30,7 @@ const string Player::getName() const{
 }
 void Player::placeSettelemnt(int v,Board board){
     size_t u = (size_t) v;
-    if(board.getVertcis()[u].ownerName!= ""){ 
+    if(board.getVertcis()[u].ownerName != ""){ 
         cout << "place is taken" << endl;
         return;
     }
@@ -38,7 +38,7 @@ void Player::placeSettelemnt(int v,Board board){
         cout << "no settelments to place" << endl;
         return;
     }
-    //board.getVertcis()[v].owner.getName() = name;
+    board.getVertcis()[v].ownerName = name;
     this->SettelemntAmount--;
 }
 
@@ -85,12 +85,13 @@ void Player::trade(Player p, string tradeCard, string givenCard, int amountTrade
         p.removeResource(tradeResource, amountTrade);
         p.addResource(givenResource, amountGiven);
         cout << "Trade successful: " << amountTrade << " " << tradeCard << " for " << amountGiven << " " << givenCard << endl;
-    } else {
+    } 
+    else {
         cout << "Trade failed: Not enough resources." << endl;
     }
 }
 
-void Player::buyDevelopmentCard(){
+void Player::buyDevelopmentCard(){//continue after ther's edges in the board 
     if (this->hasResource(Resource::Wheat, 1) && this->hasResource(Resource::Sheep, 1) && this->hasResource(Resource::Ore, 1)) {
         this->removeResource(Resource::Wheat, 1);
         this->removeResource(Resource::Sheep, 1);
@@ -106,12 +107,12 @@ void Player::buyDevelopmentCard(){
 }
 
 void Player::printPoints(){
-
+    cout << name << " have " << points << " points" << endl;
 }
 
 int Player::rollDice(){
     int roll = (rand() % 6 + 1) + (rand() % 6 + 1); // Rolling two six-sided dice
-    cout << "Dice roll: " << roll << "\n";
+    cout << "Dice roll is: " << roll << "\n";
     board->distributeResources(roll,this);
     return roll;
 }

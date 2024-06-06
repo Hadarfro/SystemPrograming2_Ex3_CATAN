@@ -4,14 +4,15 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include <cstring>
 #include "catan.hpp"
 #include "board.hpp"
 #include "player.hpp"
 
 
 // Constructor with default arguments
-Catan::Catan(const Player& p1,const Player& p2,const Player& p3 = Player(),const Player& p4 = Player()) {
-    players[0] = NULL;  // Initialize all players to default Player objects
+Catan::Catan(Player p1,Player p2,Player p3,Player p4) {
+    players[0] = Player();  // Initialize all players to default Player objects
     players[1] = p1;
     players[2] = p2;
     if (p3.getName() != "") {  // Check if a fourth player is provided
@@ -28,7 +29,7 @@ Catan::Catan(const Player& p1,const Player& p2,const Player& p3 = Player(),const
 }
 
 void Catan::printGameState() const {
-    cout << "Current player: " << players[currentPlayer].getName() << "\n";
+    cout << "Current player is: " << currentPlayer << "\n";
     board.printBoard();
     for (const auto& player : players) {
         player.printResources();

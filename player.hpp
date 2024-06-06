@@ -17,17 +17,17 @@ using namespace std;
 class Player {
     private:
         string name;
-        mutable map<Resource, int> cards;
+        mutable map<Resource, int> cards; // cards can be modified even if it's a part of an object that is declared as const
         int SettelemntAmount;
         int roadAmount;
         int points;
         const Board* board;
     public:
-        Player(const string& name = "", const Board* b = nullptr);
+        Player(const string& name = "", const Board* b = nullptr);// initillezed list
 
         void addResource(Resource resource, int amount) const;
         void printResources() const {
-            std::cout << "Resources of " << name << ":\n";
+            cout << "Resources of " << name << ":\n";
             for (const auto& pair : cards) {
                 cout << resourceToString(pair.first) << ": " << pair.second << "\n";
             }
