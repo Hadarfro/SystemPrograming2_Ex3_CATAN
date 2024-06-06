@@ -38,7 +38,7 @@ void Player::placeSettelemnt(int v,Board board){
         cout << "no settelments to place" << endl;
         return;
     }
-    board.getVertcis()[v].ownerName = name;
+    board.getVertcis()[u].ownerName = name;
     this->SettelemntAmount--;
 }
 
@@ -91,7 +91,7 @@ void Player::trade(Player p, string tradeCard, string givenCard, int amountTrade
     }
 }
 
-void Player::buyDevelopmentCard(){//continue after ther's edges in the board 
+void Player::buyDevelopmentCard(){ //continue after ther's edges in the board 
     if (this->hasResource(Resource::Wheat, 1) && this->hasResource(Resource::Sheep, 1) && this->hasResource(Resource::Ore, 1)) {
         this->removeResource(Resource::Wheat, 1);
         this->removeResource(Resource::Sheep, 1);

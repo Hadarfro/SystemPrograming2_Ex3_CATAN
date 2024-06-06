@@ -9,7 +9,7 @@ CXXFLAGS = -std=c++11 -Werror -Wsign-conversion
 VALGRIND_FLAGS = -v --leak-check=full --show-leak-kinds=all --error-exitcode=99
 
 # Source and object files
-SOURCES =  board.cpp player.cpp TestCounter.cpp Test.cpp
+SOURCES = catan.cpp board.cpp player.cpp TestCounter.cpp Test.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 # Default rule to build and run the demo

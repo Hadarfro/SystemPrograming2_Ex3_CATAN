@@ -30,7 +30,7 @@ Catan::Catan(Player p1,Player p2,Player p3,Player p4) {
 
 void Catan::printGameState() const {
     cout << "Current player is: " << currentPlayer << "\n";
-    board.printBoard();
+    board->printBoard();
     for (const auto& player : players) {
         player.printResources();
     }
@@ -38,12 +38,12 @@ void Catan::printGameState() const {
 
 void Catan::ChooseStartingPlayer(){
     // Generate a random number between 1 and 3
-    size_t i = rand() % 3 + 1;
+    size_t i = (size_t)rand() % 3 + 1;
     cout << players[i].getName() << endl;
 }
 
-Board Catan::getBoard(){
-    return board;
+Board& Catan::getBoard(){
+    return *board;
 }
 
 void Catan::printWinner(){
@@ -52,7 +52,7 @@ void Catan::printWinner(){
 
 void Catan::takeCards(int roll){
 
-    for (const auto& tile : board.getTiles()) {
+    for (const auto& tile : board->getTiles()) {
         if (tile.number == roll) {
             for (size_t i = 0;i < 3;i++) {
                 players[i].addResource(tile.resource,1); // Simplified resource distribution
