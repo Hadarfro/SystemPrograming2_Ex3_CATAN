@@ -7,7 +7,6 @@
 #include <cstdlib>
 #include "catan.hpp"
 #include "resource.hpp"
-#include "board.hpp"
 #include "player.hpp"
 
 class Board;
@@ -21,10 +20,15 @@ class Player {
         int SettelemntAmount;
         int roadAmount;
         int points;
-        const Board* board;
+        Catan catan;
     public:
-        Player(const string& name = "", const Board* b = nullptr);// initillezed list
-
+        Player(const string& name = "");// initillezed list
+        Player& operator=(const Player& other) {  // Copy assignment operator
+            if (this != &other) {
+                name = other.name;
+            }
+            return *this;
+        }
         void addResource(Resource resource, int amount) const;
         void printResources() const {
             cout << "Resources of " << name << ":\n";
@@ -38,10 +42,10 @@ class Player {
         }
 
 
-        void placeSettelemnt(int v,Board board);
+        void placeSettelemnt(int v,Board& board);
         void placeRoad(int edge,Board board);
         void endTurn();
-        const Board* getBoard();
+        const Board& getBoard();
         int rollDice();  
         const string getName() const;
         void trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven);

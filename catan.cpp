@@ -11,7 +11,7 @@
 
 
 // Constructor with default arguments
-Catan::Catan(Player p1,Player p2,Player p3,Player p4) {
+Catan::Catan(Player p1,Player p2,Player p3,Player p4,const Board& b) : board(b) {
     players[0] = Player();  // Initialize all players to default Player objects
     players[1] = p1;
     players[2] = p2;
@@ -30,7 +30,7 @@ Catan::Catan(Player p1,Player p2,Player p3,Player p4) {
 
 void Catan::printGameState() const {
     cout << "Current player is: " << currentPlayer << "\n";
-    board->printBoard();
+    board.printBoard();
     for (const auto& player : players) {
         player.printResources();
     }
@@ -42,8 +42,8 @@ void Catan::ChooseStartingPlayer(){
     cout << players[i].getName() << endl;
 }
 
-Board& Catan::getBoard(){
-    return *board;
+const Board& Catan::getBoard(){
+    return board;
 }
 
 void Catan::printWinner(){
@@ -51,12 +51,12 @@ void Catan::printWinner(){
 }
 
 void Catan::takeCards(int roll){
-
-    for (const auto& tile : board->getTiles()) {
-        if (tile.number == roll) {
-            for (size_t i = 0;i < 3;i++) {
-                players[i].addResource(tile.resource,1); // Simplified resource distribution
-            }
-        }
-    }
+    board.distributeResources(roll);
+    // for (const auto& tile : board->getTiles()) {
+    //     if (tile.number == roll) {
+    //         for (size_t i = 0;i < 3;i++) {
+    //             players[i].addResource(tile.resource,1); // Simplified resource distribution
+    //         }
+    //     }
+    // }
 }

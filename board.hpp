@@ -5,7 +5,6 @@
 #include <ctime>
 #include <string>
 #include <cstdlib>
-#include "catan.hpp"
 #include "resource.hpp"
 #include "player.hpp"
 #include "board.hpp"
@@ -33,15 +32,15 @@ class Tile {
 // Vertex class
 class Vertex {  
     public:
-        string ownerName;
+        Player owner;
         vector<Tile> adjacentTiles;
         void addAdjacentTile(vector<Tile> tile) {
             for(size_t i = 0;i < tile.size();i++){
                 adjacentTiles.push_back(tile[i]);
             }
         }
-        Vertex(string o = "", vector<Tile> adjacentTiles = {})
-        : adjacentTiles(adjacentTiles), ownerName(o) {
+        Vertex(Player o = Player(), vector<Tile> adjacentTiles = {})
+        : adjacentTiles(adjacentTiles), owner(o) {
             // owner is not initialized here
         }
 };
@@ -78,5 +77,5 @@ class Board {
                 //std::cout << resourceToString(tile.resource) << " (" << tile.number << ")\n";
             }
         }
-        void distributeResources(int roll,Player* p) const; 
+        void distributeResources(int roll) const; 
 };

@@ -92,15 +92,13 @@ Board::Board() {
 
         }
 
-void Board::distributeResources(int roll,Player* p) const {
-    
-    for (size_t i = 0; i < vertices.size();i++) {
-        if (vertices[i].ownerName != "") {
-            for (size_t j = 0;j < vertices[i].adjacentTiles.size();j++) {
-                if(vertices[i].adjacentTiles[j].getNumber() == roll){
-                    if(vertices[i].ownerName == p->getName()){
-                        p->addResource(vertices[i].adjacentTiles[j].resource, 1);
-                    }
+void Board::distributeResources(int roll) const {
+
+    for (size_t i = 0; i < vertices.size();i++) { //goning over all the vertices
+        if (vertices[i].owner.getName() != "") { //if theres a player on the vertex
+            for (size_t j = 0;j < vertices[i].adjacentTiles.size();j++) { //goning over all tiles of the current vertex
+                if(vertices[i].adjacentTiles[j].getNumber() == roll){ //if the player have a setlment on a tile with the number of the roll dice
+                    vertices[i].owner.addResource(vertices[i].adjacentTiles[j].resource, 1); // add to the player resource card
                 }
             }
         }

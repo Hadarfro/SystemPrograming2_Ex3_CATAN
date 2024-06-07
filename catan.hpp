@@ -13,15 +13,15 @@ using namespace std;
 
 class Catan {
     private:
-        Board* board;
-        vector<Player> players;
+        const Board& board;
+        vector<Player&> players;
         string currentPlayer;
         int numPlayers;
 
     public:
-        Catan(Player p1,Player p2,Player p3 = Player(),Player p4 = Player());
+        Catan(Player p1,Player p2,Player p3 = Player(),Player p4 = Player(),const Board& board = Board()); //initializer list
         void ChooseStartingPlayer();
-        Board& getBoard();
+        const Board& getBoard();
         void printWinner();
         void printGameState() const;
         void takeCards(int roll);

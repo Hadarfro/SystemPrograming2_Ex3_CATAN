@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Player::Player(const string& myName, const Board* b) : name(myName),board(b), SettelemntAmount(2), roadAmount(2), points(2) {
+Player::Player(const string& myName) : name(myName), SettelemntAmount(2), roadAmount(2), points(2) {
     cards[Resource::Wood] = 0;
     cards[Resource::Brick] = 0;
     cards[Resource::Sheep] = 0;
@@ -22,15 +22,15 @@ void Player::addResource(Resource resource, int amount) const {
     cards[resource] += amount;
 }
 
-const Board* Player::getBoard(){
-    return board;
+const Board& Player::getBoard(){
+    return catan.getBoard();
 }
 const string Player::getName() const{
     return name;
 }
-void Player::placeSettelemnt(int v,Board board){
+void Player::placeSettelemnt(int v,Board& board){
     size_t u = (size_t) v;
-    if(board.getVertcis()[u].ownerName != ""){ 
+    if(board.getVertcis()[u].owner.getName() != ""){ 
         cout << "place is taken" << endl;
         return;
     }
@@ -38,7 +38,7 @@ void Player::placeSettelemnt(int v,Board board){
         cout << "no settelments to place" << endl;
         return;
     }
-    board.getVertcis()[u].ownerName = name;
+    board.getVertcis()[u].owner.getName() = name;
     this->SettelemntAmount--;
 }
 
@@ -113,6 +113,6 @@ void Player::printPoints(){
 int Player::rollDice(){
     int roll = (rand() % 6 + 1) + (rand() % 6 + 1); // Rolling two six-sided dice
     cout << "Dice roll is: " << roll << "\n";
-    board->distributeResources(roll,this);
+    catan.takeCards(roll);
     return roll;
 }
