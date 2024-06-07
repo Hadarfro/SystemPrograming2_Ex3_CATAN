@@ -47,7 +47,13 @@ const Board& Catan::getBoard(){
 }
 
 void Catan::printWinner(){
-
+    string winner = "";
+    for(size_t i = 0;i < 5;i++){
+        if(players[i].points >= 10){
+            winner = players[i].getName();
+        }
+    }
+    cout << winner << endl;
 }
 
 void Catan::takeCards(int roll){

@@ -12,6 +12,7 @@ using namespace std;
 //using namespace ariel;
 
 int main(){
+    cout << "test" << endl;
     Player p1("Hadar");
     Player p2("hila");
     Player p3("shira");    

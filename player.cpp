@@ -22,9 +22,6 @@ void Player::addResource(Resource resource, int amount) const {
     cards[resource] += amount;
 }
 
-const Board& Player::getBoard(){
-    return catan.getBoard();
-}
 const string Player::getName() const{
     return name;
 }
@@ -113,6 +110,10 @@ void Player::printPoints(){
 int Player::rollDice(){
     int roll = (rand() % 6 + 1) + (rand() % 6 + 1); // Rolling two six-sided dice
     cout << "Dice roll is: " << roll << "\n";
-    catan.takeCards(roll);
+    //catan->takeCards(roll);
     return roll;
+}
+
+int getPoints(){
+    return points;
 }

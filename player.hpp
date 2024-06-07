@@ -5,7 +5,6 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
-#include "catan.hpp"
 #include "resource.hpp"
 #include "player.hpp"
 
@@ -20,7 +19,6 @@ class Player {
         int SettelemntAmount;
         int roadAmount;
         int points;
-        Catan catan;
     public:
         Player(const string& name = "");// initillezed list
         Player& operator=(const Player& other) {  // Copy assignment operator
@@ -29,6 +27,7 @@ class Player {
             }
             return *this;
         }
+        int getPoints();
         void addResource(Resource resource, int amount) const;
         void printResources() const {
             cout << "Resources of " << name << ":\n";

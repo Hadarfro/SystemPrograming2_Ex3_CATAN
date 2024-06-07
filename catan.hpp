@@ -14,7 +14,7 @@ using namespace std;
 class Catan {
     private:
         const Board& board;
-        vector<Player&> players;
+        Player players[5];
         string currentPlayer;
         int numPlayers;
 
