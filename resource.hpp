@@ -1,5 +1,4 @@
-#ifndef RESOURCE_HPP
-#define RESOURCE_HPP
+#pragma once
 #include <iostream>
 #include <ctime>
 #include <string>
@@ -33,4 +32,3 @@ Resource stringToResource(const string& resourceStr) {
     if (resourceStr == "Ore") return Resource::Ore;
     return Resource::None;
 }
-#endif // RESOURCE_HPP

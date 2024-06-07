@@ -8,6 +8,8 @@
 #include "catan.hpp"
 #include "player.hpp"
 #include "board.hpp"
+#include "cards.hpp"
+
 using namespace std;
 //using namespace ariel;
 
@@ -32,7 +34,7 @@ int main(){
     p1.placeSettelemnt(vertex2, board);
     p1.placeRoad(edge2, board); // p1 chooses Forest, hills, Agricultural Land, Desert with numbers 5, 6, 3, 4.
 
-     int vertex3 = 31;
+    int vertex3 = 31;
     int edge3 = 22;
     p2.placeSettelemnt(vertex3, board);
     p2.placeRoad(edge3, board);

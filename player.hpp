@@ -6,7 +6,7 @@
 #include <ctime>
 #include <cstdlib>
 #include "resource.hpp"
-#include "player.hpp"
+#include "board.hpp"
 
 class Board;
 using namespace std;
@@ -20,7 +20,7 @@ class Player {
         int roadAmount;
         int points;
     public:
-        Player(const string& name = "");// initillezed list
+        Player(string name = "");// initillezed list
         Player& operator=(const Player& other) {  // Copy assignment operator
             if (this != &other) {
                 name = other.name;
@@ -39,13 +39,11 @@ class Player {
         string& getName(){
             return name;
         }
-
-
         void placeSettelemnt(int v,Board& board);
         void placeRoad(int edge,Board board);
         void endTurn();
         const Board& getBoard();
-        int rollDice();  
+        int rollDice() const;  
         const string getName() const;
         void trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven);
         void buyDevelopmentCard();

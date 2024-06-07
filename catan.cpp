@@ -6,12 +6,11 @@
 #include <cstdlib>
 #include <cstring>
 #include "catan.hpp"
-#include "board.hpp"
-#include "player.hpp"
 
 
 // Constructor with default arguments
-Catan::Catan(Player p1,Player p2,Player p3,Player p4,const Board& b) : board(b) {
+Catan::Catan(Player p1,Player p2,Player p3,Player p4) {
+    board = Board();
     players[0] = Player();  // Initialize all players to default Player objects
     players[1] = p1;
     players[2] = p2;
@@ -26,10 +25,11 @@ Catan::Catan(Player p1,Player p2,Player p3,Player p4,const Board& b) : board(b) 
     else {  // Only two players provided
         numPlayers = 2;
     }
+    currentPlayer = &p1;
 }
 
 void Catan::printGameState() const {
-    cout << "Current player is: " << currentPlayer << "\n";
+    cout << "Current player is: " << currentPlayer->getName() << "\n";
     board.printBoard();
     for (const auto& player : players) {
         player.printResources();
@@ -39,30 +39,45 @@ void Catan::printGameState() const {
 void Catan::ChooseStartingPlayer(){
     // Generate a random number between 1 and 3
     size_t i = (size_t)rand() % 3 + 1;
+    currentPlayer = &players[i];
     cout << players[i].getName() << endl;
 }
 
-const Board& Catan::getBoard(){
+Board Catan::getBoard(){
     return board;
 }
 
 void Catan::printWinner(){
     string winner = "";
     for(size_t i = 0;i < 5;i++){
-        if(players[i].points >= 10){
+        if(players[i].getPoints() >= 10){
             winner = players[i].getName();
         }
     }
     cout << winner << endl;
 }
 
-void Catan::takeCards(int roll){
-    board.distributeResources(roll);
-    // for (const auto& tile : board->getTiles()) {
-    //     if (tile.number == roll) {
-    //         for (size_t i = 0;i < 3;i++) {
-    //             players[i].addResource(tile.resource,1); // Simplified resource distribution
-    //         }
-    //     }
-    // }
+bool Catan::isVertexAvilable(int v){
+    size_t u = (size_t) v;
+    if(board.getVertcis()[u].owner == ""){
+        return true;
+    }
+    return false;
+}
+
+void Catan::takeCards(){
+    int roll = currentPlayer->rollDice();
+    for (size_t i = 0; i < board.getVertcis().size();i++) { //goning over all the vertices
+        if (board.getVertcis()[i].owner != "") { //if theres a player on the vertex
+            for (size_t j = 0;j < board.getVertcis()[i].adjacentTiles.size();j++) { //goning over all tiles of the current vertex
+                if(board.getVertcis()[i].adjacentTiles[j].getNumber() == roll){ //if the player have a setlment on a tile with the number of the roll dice
+                    for(size_t k = 0;k < players.size();k++){
+                        if(board.getVertcis()[i].owner == players[k].getName()){ // find the player the vertex belong to
+                            players[k].addResource(board.getVertcis()[i].adjacentTiles[j].resource, 1); // add to the player resource card
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

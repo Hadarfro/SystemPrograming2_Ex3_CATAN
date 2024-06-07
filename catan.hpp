@@ -13,16 +13,17 @@ using namespace std;
 
 class Catan {
     private:
-        const Board& board;
-        Player players[5];
-        string currentPlayer;
+        Board board;
+        vector<Player> players;
+        Player* currentPlayer;
         int numPlayers;
 
     public:
-        Catan(Player p1,Player p2,Player p3 = Player(),Player p4 = Player(),const Board& board = Board()); //initializer list
+        Catan(Player p1,Player p2,Player p3 = Player(),Player p4 = Player()); //initializer list
         void ChooseStartingPlayer();
-        const Board& getBoard();
+        Board getBoard();
         void printWinner();
         void printGameState() const;
-        void takeCards(int roll);
+        void takeCards();
+        bool isVertexAvilable(int v);
 };

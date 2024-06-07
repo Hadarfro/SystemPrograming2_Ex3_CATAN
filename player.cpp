@@ -6,11 +6,10 @@
 #include <cstdlib>
 #include <cstring>
 #include "player.hpp"
-#include "board.hpp"
 
 using namespace std;
 
-Player::Player(const string& myName) : name(myName), SettelemntAmount(2), roadAmount(2), points(2) {
+Player::Player(string myName) : name(myName), SettelemntAmount(2), roadAmount(2), points(2) {
     cards[Resource::Wood] = 0;
     cards[Resource::Brick] = 0;
     cards[Resource::Sheep] = 0;
@@ -27,7 +26,7 @@ const string Player::getName() const{
 }
 void Player::placeSettelemnt(int v,Board& board){
     size_t u = (size_t) v;
-    if(board.getVertcis()[u].owner.getName() != ""){ 
+    if(board.getVertcis()[u].owner != ""){ 
         cout << "place is taken" << endl;
         return;
     }
@@ -35,7 +34,7 @@ void Player::placeSettelemnt(int v,Board& board){
         cout << "no settelments to place" << endl;
         return;
     }
-    board.getVertcis()[u].owner.getName() = name;
+    board.getVertcis()[u].owner = name;
     this->SettelemntAmount--;
 }
 
@@ -107,13 +106,13 @@ void Player::printPoints(){
     cout << name << " have " << points << " points" << endl;
 }
 
-int Player::rollDice(){
+int Player::rollDice() const{
     int roll = (rand() % 6 + 1) + (rand() % 6 + 1); // Rolling two six-sided dice
     cout << "Dice roll is: " << roll << "\n";
     //catan->takeCards(roll);
     return roll;
 }
 
-int getPoints(){
+int Player::getPoints(){
     return points;
 }

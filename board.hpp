@@ -6,8 +6,6 @@
 #include <string>
 #include <cstdlib>
 #include "resource.hpp"
-#include "player.hpp"
-#include "board.hpp"
 
 class Player;
 using namespace std;
@@ -32,14 +30,14 @@ class Tile {
 // Vertex class
 class Vertex {  
     public:
-        Player owner;
+        string owner;
         vector<Tile> adjacentTiles;
         void addAdjacentTile(vector<Tile> tile) {
             for(size_t i = 0;i < tile.size();i++){
                 adjacentTiles.push_back(tile[i]);
             }
         }
-        Vertex(Player o = Player(), vector<Tile> adjacentTiles = {})
+        Vertex(string o = "", vector<Tile> adjacentTiles = {})
         : adjacentTiles(adjacentTiles), owner(o) {
             // owner is not initialized here
         }
@@ -77,5 +75,5 @@ class Board {
                 //std::cout << resourceToString(tile.resource) << " (" << tile.number << ")\n";
             }
         }
-        void distributeResources(int roll) const; 
+        //void distributeResources(int roll) const; 
 };
