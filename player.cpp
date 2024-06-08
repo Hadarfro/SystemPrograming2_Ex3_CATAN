@@ -18,6 +18,7 @@ Player::Player(string myName) : name(myName), SettelemntAmount(2), roadAmount(2)
 }
 
 void Player::addResource(Resource resource, int amount) const {
+    cout << "adding " << amount << "to " << name << endl;
     cards[resource] += amount;
 }
 
@@ -65,7 +66,7 @@ void Player::removeResource(Resource resource, int amount) {
 // }
 
 void Player::endTurn(){
-
+    
 }
 
 void Player::trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven){

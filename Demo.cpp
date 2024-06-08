@@ -92,4 +92,5 @@ int main(){
     p3.printPoints(); // p3 has 2 points because it has two settelments.
 
     myCatan.printWinner(); // Should print None because no player reached 10 points.
+    myCatan.printGameState();
 }

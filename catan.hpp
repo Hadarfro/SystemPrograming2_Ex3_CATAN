@@ -14,7 +14,7 @@ using namespace std;
 
 class Catan {
     private:
-        Board board;
+        Board* board;
         Player players[4];
         Player* currentPlayer;
         int numPlayers;
@@ -22,7 +22,7 @@ class Catan {
     public:
         Catan(Player p1,Player p2,Player p3 = Player(),Player p4 = Player()); //initializer list
         void ChooseStartingPlayer();
-        Board getBoard();
+        Board* getBoard();
         void printWinner();
         void printGameState() const;
         void takeCards();
