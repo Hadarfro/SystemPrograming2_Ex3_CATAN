@@ -14,7 +14,6 @@ using namespace std;
 //using namespace ariel;
 
 int main(){
-    cout << "test" << endl;
     Player p1("Hadar");
     Player p2("hila");
     Player p3("shira");    
@@ -23,13 +22,11 @@ int main(){
     myCatan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Amit.
     Board board = myCatan.getBoard(); // get the board of the game.
     board.printBoard();
-    // vector<string> places = {"Wood", "Brick"};
-    // vector<int> placesNum = {5, 6};
     int vertex1 = 34;
     int edge1 = 15;
     p1.placeSettelemnt(vertex1, board);
     p1.placeRoad(edge1, board);
-     int vertex2 = 46;
+    int vertex2 = 46;
     int edge2 = 12;
     p1.placeSettelemnt(vertex2, board);
     p1.placeRoad(edge2, board); // p1 chooses Forest, hills, Agricultural Land, Desert with numbers 5, 6, 3, 4.
@@ -51,7 +48,7 @@ int main(){
     p2.placeSettelemnt(vertex4, board);
     p2.placeRoad(edge4, board); // p2 chooses Mountains, Pasture Land, and Forest with numbers 4, 9, 5.
 
-     int vertex5 = 5;
+    int vertex5 = 5;
     int edge5 = 37;
     p3.placeSettelemnt(vertex5, board);
     p3.placeRoad(edge5, board);
@@ -80,11 +77,13 @@ int main(){
         cout << e.what() << endl;
     }
 
-    p1.rollDice();                       // Lets say it's print 6. Then, p1 gets bricks from the hills.
+    //p1.rollDice();                       // Lets say it's print 6. Then, p1 gets bricks from the hills.
+    myCatan.takeCards();
     p1.trade(p2, "wood", "brick", 1, 1); // p1 trades 1 wood for 1 brick with p2.
     p1.endTurn();                        // p1 ends his turn.
 
-    p2.rollDice();           // Lets say it's print 9. Then, p3 gets wool from the Pasture Land, p2 gets wool from the Pasture Land.
+    //p2.rollDice();           // Lets say it's print 9. Then, p3 gets wool from the Pasture Land, p2 gets wool from the Pasture Land.
+    myCatan.takeCards();
     p2.buyDevelopmentCard(); // p2 buys a development card. Lets say it is a bonus points card.
     p2.endTurn();            // p2 ends his turn.
 

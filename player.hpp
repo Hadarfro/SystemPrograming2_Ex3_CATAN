@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include "resource.hpp"
 #include "board.hpp"
+#include "cards.hpp"
 
 class Board;
 using namespace std;
@@ -42,13 +43,11 @@ class Player {
         void placeSettelemnt(int v,Board& board);
         void placeRoad(int edge,Board board);
         void endTurn();
-        const Board& getBoard();
         int rollDice() const;  
         const string getName() const;
         void trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven);
         void buyDevelopmentCard();
         void printPoints();
         bool hasResource(Resource resource, int amount);
-       // void addDevelopmentCard(const DevelopmentCard& card);
         void removeResource(Resource resource, int amount);
 };

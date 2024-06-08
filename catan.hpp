@@ -8,13 +8,14 @@
 #include "player.hpp"
 #include "board.hpp"
 #include "cards.hpp"
+#include "resource.hpp"
 
 using namespace std;
 
 class Catan {
     private:
         Board board;
-        vector<Player> players;
+        Player players[4];
         Player* currentPlayer;
         int numPlayers;
 

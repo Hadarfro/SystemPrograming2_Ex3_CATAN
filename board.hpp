@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include "resource.hpp"
 
-class Player;
+
 using namespace std;
 
 

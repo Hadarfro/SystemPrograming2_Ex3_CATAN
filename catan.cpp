@@ -11,21 +11,21 @@
 // Constructor with default arguments
 Catan::Catan(Player p1,Player p2,Player p3,Player p4) {
     board = Board();
-    players[0] = Player();  // Initialize all players to default Player objects
-    players[1] = p1;
-    players[2] = p2;
+    players[0] = p1;  // Initialize all players to default Player objects
+    players[1] = p2;
+    //players[2] = p;
     if (p3.getName() != "") {  // Check if a fourth player is provided
-        players[3] = p3;
+        players[2] = p3;
         numPlayers = 3;
     } 
     else if (p4.getName() != "") {  // Check if a third player is provided
-        players[4] = p4;
+        players[3] = p4;
         numPlayers = 4;
     } 
     else {  // Only two players provided
         numPlayers = 2;
     }
-    currentPlayer = &p1;
+    currentPlayer = &players[0];
 }
 
 void Catan::printGameState() const {
@@ -71,7 +71,7 @@ void Catan::takeCards(){
         if (board.getVertcis()[i].owner != "") { //if theres a player on the vertex
             for (size_t j = 0;j < board.getVertcis()[i].adjacentTiles.size();j++) { //goning over all tiles of the current vertex
                 if(board.getVertcis()[i].adjacentTiles[j].getNumber() == roll){ //if the player have a setlment on a tile with the number of the roll dice
-                    for(size_t k = 0;k < players.size();k++){
+                    for(size_t k = 0;k < 4;k++){
                         if(board.getVertcis()[i].owner == players[k].getName()){ // find the player the vertex belong to
                             players[k].addResource(board.getVertcis()[i].adjacentTiles[j].resource, 1); // add to the player resource card
                         }

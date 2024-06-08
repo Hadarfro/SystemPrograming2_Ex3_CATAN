@@ -109,7 +109,6 @@ void Player::printPoints(){
 int Player::rollDice() const{
     int roll = (rand() % 6 + 1) + (rand() % 6 + 1); // Rolling two six-sided dice
     cout << "Dice roll is: " << roll << "\n";
-    //catan->takeCards(roll);
     return roll;
 }
 

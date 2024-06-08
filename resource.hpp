@@ -8,7 +8,7 @@ using namespace std;
 enum class Resource { Wood, Brick, Sheep, Wheat, Ore, Sea, Desert, None };
 
 // Function to get string representation of resource
-std::string resourceToString(Resource resource) {
+inline string resourceToString(Resource resource) {
     switch (resource) {
         case Resource::Wood: return "Wood";
         case Resource::Brick: return "Brick";
@@ -24,7 +24,7 @@ std::string resourceToString(Resource resource) {
     }
 }
 
-Resource stringToResource(const string& resourceStr) {
+inline Resource stringToResource(const string& resourceStr) {
     if (resourceStr == "Wood") return Resource::Wood;
     if (resourceStr == "Brick") return Resource::Brick;
     if (resourceStr == "Sheep") return Resource::Sheep;
