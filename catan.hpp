@@ -17,10 +17,11 @@ class Catan {
         Board* board;
         Player players[4];
         Player* currentPlayer;
+        size_t indexOfCurrentP;
         int numPlayers;
 
     public:
-        Catan(Player p1,Player p2,Player p3 = Player(),Player p4 = Player()); //initializer list
+        Catan(Player p1,Player p2,Player p3 = Player(),Player p4 = Player(),size_t indexOfCurrentP = 0); //initializer list
         void ChooseStartingPlayer();
         Board* getBoard();
         void printWinner();

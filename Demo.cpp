@@ -16,11 +16,13 @@ using namespace std;
 int main(){
     Player p1("Hadar");
     Player p2("hila");
-    Player p3("shira");    
+    Player p3("shira"); 
+    Board b;   
     Catan myCatan(p1, p2, p3);
     // Starting of the game. Every player places two settlements and two roads.
     myCatan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Amit.
-    Board board = myCatan.getBoard(); // get the board of the game.
+    cout << "test" << endl;
+    Board board = *myCatan.getBoard(); // get the board of the game.
     board.printBoard();
     int vertex1 = 34;
     int edge1 = 15;

@@ -5,6 +5,7 @@
 #include <ctime>
 #include <string>
 #include <cstdlib>
+#include <functional>  // for std::reference_wrapper
 #include "resource.hpp"
 
 
@@ -16,14 +17,17 @@ class Tile {
     public:
         Resource resource;
         int number;
-        vector<Tile> neighbors;
+        vector<Tile>* neighbors;
         vector<int> vertcies;
         Tile(Resource resource, int number = 0,vector<Tile> myneighbors = {},vector<int> myvertcies = {}) : resource(resource), number(number) {
-            neighbors = myneighbors;
+            neighbors = &myneighbors;
             vertcies = myvertcies;
         }
         int getNumber() const{
             return number;
+        }
+        Resource getResource(){
+            return resource;
         }
 };
 
@@ -31,13 +35,13 @@ class Tile {
 class Vertex {  
     public:
         string owner;
-        vector<Tile> adjacentTiles;
-        void addAdjacentTile(vector<Tile> tile) {
+        vector<Tile*> adjacentTiles;
+        inline void addAdjacentTile(vector<Tile*> tile) {
             for(size_t i = 0;i < tile.size();i++){
                 adjacentTiles.push_back(tile[i]);
             }
         }
-        Vertex(string o = "", vector<Tile> adjacentTiles = {})
+        Vertex(string o = "", vector<Tile*> adjacentTiles = {})
         : adjacentTiles(adjacentTiles), owner(o) {
             // owner is not initialized here
         }
@@ -60,7 +64,7 @@ class Board {
         vector<Vertex> vertices;
     public:
         Board();
-
+        Board(const Board& other);
         vector<Tile>& getTiles(){
             return tiles;
         }
