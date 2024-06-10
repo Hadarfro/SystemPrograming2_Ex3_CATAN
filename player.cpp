@@ -18,7 +18,7 @@ Player::Player(string myName) : name(myName), SettelemntAmount(2), roadAmount(2)
 }
 
 void Player::addResource(Resource resource, int amount) const {
-    cout << "adding " << amount << "to " << name << endl;
+    cout << "adding " << amount << " " << resourceToString(resource) << " to " << name << endl;
     cards[resource] += amount;
 }
 

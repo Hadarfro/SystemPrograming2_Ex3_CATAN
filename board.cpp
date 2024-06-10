@@ -180,7 +180,6 @@ Board::Board() {
     vertices[52].addAdjacentTile({&tile19});
     vertices[53].addAdjacentTile({&tile19});
 
-    cout << "size of tiles: " << tiles.size() << endl;
 }
 
 Board::Board(const Board& other) {
@@ -192,7 +191,6 @@ void Board::printBoard() const {
     if (tiles.size() > 1000000) { // Arbitrary large number for demonstration
             throw std::invalid_argument("Size too large");
     }
-    cout << "the amount of tiles is: " << tiles.size() << endl;
     for (size_t i = 0;i < tiles.size();i++) {
         cout << resourceToString(tiles[i].resource) << " (" << tiles[i].number << ")\n";
     }

@@ -22,7 +22,6 @@ int main(){
     // Starting of the game. Every player places two settlements and two roads.
     myCatan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Amit. 
     //Board& board = myCatan.getBoard(); // get the board of the game.
-    cout << "size of tiles: " << board.getTiles().size() << endl;
     board.printBoard();
     int vertex1 = 34;
     int edge1 = 15;
