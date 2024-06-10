@@ -4,8 +4,9 @@
 #include <string>
 #include <functional>  // for std::reference_wrapper
 
-using namespace std;
 
+using namespace std;
+//using namespace ResourceUtils;
 // Board::Board() {
 //     Tile tile1 = Tile(Resource::Wood, 11,{Tile(Resource::Brick, 2),Tile(Resource::Wheat, 4),Tile(Resource::Ore, 5),Tile(Resource::Sea,0)});
 //     Tile tile2 = Tile(Resource::Brick, 2,{tile1,Tile(Resource::Ore, 5),Tile(Resource::Wood, 6),Tile(Resource::Sheep, 3),Tile(Resource::Sea,0)});
@@ -94,6 +95,7 @@ using namespace std;
 //         }
    
 Board::Board() {
+    initializeTiles(); 
     // Create all tiles first
     Tile tile1 = Tile(Resource::Wood, 11, {Tile(Resource::Brick, 2),Tile(Resource::Wheat, 4),Tile(Resource::Ore, 5),Tile(Resource::Sea,0)});
     Tile tile2 = Tile(Resource::Brick, 2,{tile1,Tile(Resource::Ore, 5),Tile(Resource::Wood, 6),Tile(Resource::Sheep, 3),Tile(Resource::Sea,0)});
@@ -115,13 +117,12 @@ Board::Board() {
     Tile tile18 = Tile(Resource::Wheat, 9,{tile17,tile14,tile15,Tile(Resource::Brick, 10),Tile(Resource::Sea, 0)});
     Tile tile19 = Tile(Resource::Brick, 10,{tile18,tile15,tile16,Tile(Resource::Sea, 0)});
         
-            // Simplified board with fixed resources and numbers
-                    
-            tiles = {tile1,tile2,tile3,tile4,tile5,tile6,tile7,
-                tile8,tile9,tile10,tile11,tile12,tile13,
-                tile14,tile15,tile16,tile17,tile18,tile19
-            };
-
+    // Simplified board with fixed resources and numbers
+               
+    tiles = {tile1,tile2,tile3,tile4,tile5,tile6,tile7,tile8,tile9,tile10,
+            tile11,tile12,tile13,tile14,tile15,tile16,tile17,tile18,tile19};
+    
+    
     // Create vertices
     vertices.resize(54);
     vertices[0].addAdjacentTile({&tile3});
@@ -178,9 +179,21 @@ Board::Board() {
     vertices[51].addAdjacentTile({&tile18, &tile19});
     vertices[52].addAdjacentTile({&tile19});
     vertices[53].addAdjacentTile({&tile19});
+
+    cout << "size of tiles: " << tiles.size() << endl;
 }
 
 Board::Board(const Board& other) {
     this->tiles = other.tiles;
     this->vertices = other.vertices;
+}
+
+void Board::printBoard() const {
+    if (tiles.size() > 1000000) { // Arbitrary large number for demonstration
+            throw std::invalid_argument("Size too large");
+    }
+    cout << "the amount of tiles is: " << tiles.size() << endl;
+    for (size_t i = 0;i < tiles.size();i++) {
+        cout << resourceToString(tiles[i].resource) << " (" << tiles[i].number << ")\n";
+    }
 }

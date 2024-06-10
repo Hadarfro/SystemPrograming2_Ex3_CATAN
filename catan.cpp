@@ -9,9 +9,9 @@
 
 
 // Constructor with default arguments
-Catan::Catan(Player p1,Player p2,Player p3,Player p4,size_t indexOfCurrentP) {
-    Board b;
-    board = &b;
+Catan::Catan(Player p1,Player p2,Player p3,Player p4,Board* b,size_t indexOfCurrentP) {
+    board = b;
+    cout << "testing: " << board->getTiles().size() << endl;
     players[0] = p1;  // Initialize all players to default Player objects
     players[1] = p2;
     //players[2] = p;
@@ -47,7 +47,6 @@ void Catan::ChooseStartingPlayer(){
 }
 
 Board* Catan::getBoard(){
-    cout << "testing" << endl;
     return board;
 }
 

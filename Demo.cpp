@@ -8,21 +8,21 @@
 #include "catan.hpp"
 #include "player.hpp"
 #include "board.hpp"
-#include "cards.hpp"
+
 
 using namespace std;
-//using namespace ariel;
+//using namespace ResourceUtils;
 
 int main(){
     Player p1("Hadar");
     Player p2("hila");
-    Player p3("shira"); 
-    Board b;   
-    Catan myCatan(p1, p2, p3);
+    Player p3("shira");
+    Board board;   
+    Catan myCatan(p1, p2, p3,Player(),&board,0);
     // Starting of the game. Every player places two settlements and two roads.
-    myCatan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Amit.
-    cout << "test" << endl;
-    Board board = *myCatan.getBoard(); // get the board of the game.
+    myCatan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Amit. 
+    //Board& board = myCatan.getBoard(); // get the board of the game.
+    cout << "size of tiles: " << board.getTiles().size() << endl;
     board.printBoard();
     int vertex1 = 34;
     int edge1 = 15;

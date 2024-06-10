@@ -23,10 +23,12 @@ class Tile {
             neighbors = &myneighbors;
             vertcies = myvertcies;
         }
-        int getNumber() const{
+        // Default constructor
+        Tile() : resource(Resource::None), number(0) {}
+        int getNumber() {
             return number;
         }
-        Resource getResource(){
+        Resource getResource() {
             return resource;
         }
 };
@@ -68,16 +70,17 @@ class Board {
         vector<Tile>& getTiles(){
             return tiles;
         }
+        void initializeTiles() {
+            size_t numTiles = 19;
+            tiles.clear();
+            tiles.resize(numTiles, Tile(Resource::None, 0));
+        }
 
         vector<Vertex>& getVertcis(){
             return vertices;
         }
 
 
-        void printBoard() const {
-            for (const auto& tile : tiles) {
-                //std::cout << resourceToString(tile.resource) << " (" << tile.number << ")\n";
-            }
-        }
+        void printBoard() const; 
         //void distributeResources(int roll) const; 
 };
