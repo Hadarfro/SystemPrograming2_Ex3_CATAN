@@ -9,7 +9,7 @@
 
 
 // Constructor with default arguments
-Catan::Catan(Player p1,Player p2,Player p3,Player p4,Board* b,size_t indexOfCurrentP) {
+Catan::Catan(Player p1,Player p2,Player p3,Player p4,Board* b) {
     board = b;
     players[0] = p1;  // Initialize all players to default Player objects
     players[1] = p2;
@@ -25,6 +25,7 @@ Catan::Catan(Player p1,Player p2,Player p3,Player p4,Board* b,size_t indexOfCurr
     else {  // Only two players provided
         numPlayers = 2;
     }
+    indexOfCurrentP = 0;
 }
 
 void Catan::printGameState() const {
@@ -67,7 +68,13 @@ bool Catan::isVertexAvilable(int v){
     return false;
 }
 
-void Catan::takeCards(){
+void Catan::nextPlayer(){
+    indexOfCurrentP = (indexOfCurrentP + 1) % 3;
+    currentPlayer = &players[indexOfCurrentP];
+    cout << "the current player is: " << currentPlayer->getName() << endl;
+}
+
+void Catan::rollDiceOfCurrentPlayer(){
     int roll = currentPlayer->rollDice();
     for (size_t i = 0; i < board->getVertcis().size();i++) { //goning over all the vertices
         if (board->getVertcis()[i].owner != "") { //if theres a player on the vertex

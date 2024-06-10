@@ -40,7 +40,7 @@ class Player {
                 cout << "amount of cards: " << pair.second << endl; 
             }
         }
-
+        void addDevelopmentCard(const DevelopmentCard& card);
         string& getName(){
             return name;
         }

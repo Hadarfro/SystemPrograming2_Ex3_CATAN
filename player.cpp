@@ -67,9 +67,16 @@ void Player::removeResource(Resource resource, int amount) {
     }
 }
 
-// void Player::addDevelopmentCard(const DevelopmentCard& card) {
-//     //developmentResourceCards.push_back(card);
-// }
+void Player::addDevelopmentCard(const DevelopmentCard& card) {
+     // Increment the count if the card exists, otherwise add it with count 1
+        // auto it = DevelopmentCards.find(card);
+        // if (it != DevelopmentCards.end()) {
+        //     ++(it->second);
+        // } 
+        // else {
+        //     DevelopmentCards[card] = 1;
+        // }
+}
 
 void Player::endTurn(){//need to continue
     setIsPlaying(false);
