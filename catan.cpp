@@ -40,6 +40,7 @@ void Catan::printGameState() const {
 void Catan::ChooseStartingPlayer(){
     // Generate a random number between 1 and 3
     size_t i = (size_t)rand() % 3 + 1;
+    players[i].setIsPlaying(true);
     currentPlayer = &players[i];
     indexOfCurrentP = i;
     cout << "the starting player is: " << players[i].getName() << endl;

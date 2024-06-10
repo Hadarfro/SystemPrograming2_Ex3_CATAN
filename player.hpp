@@ -16,10 +16,12 @@ using namespace std;
 class Player {
     private:
         string name;
-        mutable map<Resource, int> cards; // cards can be modified even if it's a part of an object that is declared as const
+        mutable map<ResourceCard, int> ResourceCards; // cards can be modified even if it's a part of an object that is declared as const
+        mutable map<DevelopmentCard, int> DevelopmentCards;
         int SettelemntAmount;
         int roadAmount;
         int points;
+        bool isPlaying;
     public:
         Player(string name = "");// initillezed list
         Player& operator=(const Player& other) {  // Copy assignment operator
@@ -28,12 +30,14 @@ class Player {
             }
             return *this;
         }
+        void setIsPlaying(bool flag);
         int getPoints();
         void addResource(Resource resource, int amount) const;
         void printResources() const {
-            cout << "Resources of " << name << ":\n";
-            for (const auto& pair : cards) {
-                cout << resourceToString(pair.first) << ": " << pair.second << "\n";
+            cout << "the resources of " << name << " is:" << endl;
+            for (const auto& pair : ResourceCards) {
+                pair.first.display();
+                cout << "amount of cards: " << pair.second << endl; 
             }
         }
 

@@ -59,9 +59,9 @@ int main(){
     p3.placeRoad(edge6, board); // p3 chooses Mountains, Pasture Land, Agricultural Land, Pasture Land with numbers 3, 8, 3, 9.
 
     // p1 has wood,bricks, and wheat, p2 has wood, ore, and wool, p3 has ore, wool, wheat.
-    p1.rollDice();                                    // Lets say it's print 4. Then, p2 gets ore from the mountations.
+    p1.rollDice();// Lets say it's print 4. Then, p2 gets ore from the mountations.
     p1.placeRoad(23, board); // p1 continues to build a road.
-    p1.endTurn();                                     // p1 ends his turn.
+    p1.endTurn(); // p1 ends his turn.
 
     p2.rollDice(); // Lets say it's print 9. Then, p3 gets wool from the Pasture Land, p2 gets wool from the Pasture Land.
     p2.endTurn();  // p2 ends his turn.
