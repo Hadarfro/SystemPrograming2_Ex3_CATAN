@@ -20,7 +20,7 @@ int main(){
     Board board;   
     Catan myCatan(p1, p2, p3,Player(),&board);
     // Starting of the game. Every player places two settlements and two roads.
-    myCatan.ChooseStartingPlayer();   // should print the name of the starting player, assume it is Amit. 
+    myCatan.ChooseStartingPlayer(); // should print the name of the starting player, assume it is Amit. 
     //Board& board = myCatan.getBoard(); // get the board of the game.
     board.printBoard();
     int vertex1 = 34;
@@ -40,7 +40,7 @@ int main(){
     {
         p3.placeSettelemnt(edge3, board); // p3 tries to place a settlement in the same location as p2.
     }
-    catch (const std::exception &e)
+    catch (const exception &e)
     {
         cout << e.what() << endl;
     }

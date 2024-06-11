@@ -34,7 +34,7 @@ void Player::setIsPlaying(bool flag){
 void Player::placeSettelemnt(int v,Board& board){
     size_t u = (size_t) v;
     if(board.getVertcis()[u].owner != ""){ 
-        cout << "place is taken" << endl;
+        throw runtime_error("place is taken");
         return;
     }
     if(this->SettelemntAmount == 0){
@@ -45,7 +45,7 @@ void Player::placeSettelemnt(int v,Board& board){
     this->SettelemntAmount--;
 }
 
-void Player::placeRoad(int edge,Board board){
+void Player::placeRoad(int edge,Board board){//need to continue
     if(this->roadAmount == 0){
         cout << "no roads to place" << endl;
         return;
@@ -68,14 +68,14 @@ void Player::removeResource(Resource resource, int amount) {
 }
 
 void Player::addDevelopmentCard(const DevelopmentCard& card) {
-     // Increment the count if the card exists, otherwise add it with count 1
-        // auto it = DevelopmentCards.find(card);
-        // if (it != DevelopmentCards.end()) {
-        //     ++(it->second);
-        // } 
-        // else {
-        //     DevelopmentCards[card] = 1;
-        // }
+    //  Increment the count if the card exists, otherwise add it with count 1
+    auto it = DevelopmentCards.find(card);
+    if (it != DevelopmentCards.end()) {
+        ++(it->second);
+    } 
+    else {
+        DevelopmentCards[card] = 1;
+    }
 }
 
 void Player::endTurn(){//need to continue
@@ -102,18 +102,33 @@ void Player::trade(Player p, string tradeCard, string givenCard, int amountTrade
 }
 
 void Player::buyDevelopmentCard(){ //continue after there's edges in the board 
-    // if (this->hasResource(Resource::Wheat, 1) && this->hasResource(Resource::Sheep, 1) && this->hasResource(Resource::Ore, 1)) {
-    //     this->removeResource(Resource::Wheat, 1);
-    //     this->removeResource(Resource::Sheep, 1);
-    //     this->removeResource(Resource::Ore, 1);
+    if (this->hasResource(Resource::Wheat, 1) && this->hasResource(Resource::Sheep, 1) && this->hasResource(Resource::Ore, 1)) {
+        this->removeResource(Resource::Wheat, 1);
+        this->removeResource(Resource::Sheep, 1);
+        this->removeResource(Resource::Ore, 1);
 
-    //     // DevelopmentCard newCard("Development Card"); // Assuming all development ResourceCards are the same for simplicity.
-    //     // this->addDevelopmentCard(newCard);
-    //     // cout << "Development card purchased successfully." << endl;
-    // } 
-    // else {
-    //     cout << "Purchase failed: Not enough resources." << endl;
-    // }
+        DevelopmentCard newCard("Development"); // Assuming all development ResourceCards are the same for simplicity.
+        this->addDevelopmentCard(newCard);
+        cout << "Development card purchased successfully." << endl;
+    } 
+    else {
+        cout << "Purchase failed: Not enough resources." << endl;
+    }
+}
+
+void Player::buySettelemnt(){ //continue after there's edges in the board 
+    if (this->hasResource(Resource::Wheat, 1) && this->hasResource(Resource::Sheep, 1) && this->hasResource(Resource::Wood, 1) && this->hasResource(Resource::Brick, 1)) {
+        this->removeResource(Resource::Wheat, 1);
+        this->removeResource(Resource::Sheep, 1);
+        this->removeResource(Resource::Wood, 1);
+        this->removeResource(Resource::Brick, 1);
+
+        SettelemntAmount++;
+        cout << "Settelment purchased successfully." << endl;
+    } 
+    else {
+        cout << "Purchase failed: Not enough resources." << endl;
+    }
 }
 
 void Player::printPoints(){

@@ -44,6 +44,7 @@ void Catan::ChooseStartingPlayer(){
     players[i].setIsPlaying(true);
     currentPlayer = &players[i];
     indexOfCurrentP = i;
+    //board->setCurrentPlayerName(currentPlayer->getName());
     cout << "the starting player is: " << players[i].getName() << endl;
 }
 
@@ -71,6 +72,7 @@ bool Catan::isVertexAvilable(int v){
 void Catan::nextPlayer(){
     indexOfCurrentP = (indexOfCurrentP + 1) % 3;
     currentPlayer = &players[indexOfCurrentP];
+    //board->setCurrentPlayerName(currentPlayer->getName());
     cout << "the current player is: " << currentPlayer->getName() << endl;
 }
 

@@ -64,9 +64,13 @@ class Board {
     private:
         vector<Tile> tiles;
         vector<Vertex> vertices;
+        string currentPlayerName;
     public:
         Board();
         Board(const Board& other);
+        void setCurrentPlayerName(const std::string& newName) {
+            currentPlayerName = newName;
+        }
         vector<Tile>& getTiles(){
             return tiles;
         }

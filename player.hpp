@@ -44,6 +44,7 @@ class Player {
         string& getName(){
             return name;
         }
+        void buySettelemnt();
         void placeSettelemnt(int v,Board& board);
         void placeRoad(int edge,Board board);
         void endTurn();

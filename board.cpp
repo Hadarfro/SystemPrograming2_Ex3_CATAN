@@ -96,6 +96,7 @@ using namespace std;
    
 Board::Board() {
     initializeTiles(); 
+    currentPlayerName = "";
     // Create all tiles first
     Tile tile1 = Tile(Resource::Wood, 11, {Tile(Resource::Brick, 2),Tile(Resource::Wheat, 4),Tile(Resource::Ore, 5),Tile(Resource::Sea,0)});
     Tile tile2 = Tile(Resource::Brick, 2,{tile1,Tile(Resource::Ore, 5),Tile(Resource::Wood, 6),Tile(Resource::Sheep, 3),Tile(Resource::Sea,0)});

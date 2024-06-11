@@ -47,24 +47,33 @@ private:
 // Derived DevelopmentCard class
 class DevelopmentCard : public Card {
     public:
-        enum class DevelopmentType { KNIGHT, VICTORY_POINT, ROAD_BUILDING, YEAR_OF_PLENTY, MONOPOLY };
+        enum class DevelopmentType { KNIGHT, VICTORY_POINT, ROAD_BUILDING, YEAR_OF_PLENTY, MONOPOLY , UNKNOWN};
         
-        DevelopmentCard(DevelopmentType type) : type(type) {}
+        DevelopmentCard(string type) : type(type) {}
 
         string getType() const override {
             return "Development";
         }
 
-        DevelopmentType getDevelopmentType() const {
-            return type;
+        DevelopmentType getDevelopmentType() {
+            return stringToDevelopmentType(type);
         }
 
         void display() const override {
-            std::cout << "Development Card: " << developmentTypeToString(type) << "\n";
+            cout << "Development Card: " << type << "\n";
+        }
+
+        // Define the comparison operator
+        bool operator<(const DevelopmentCard& other) const {
+            // Implement the comparison logic. For example:
+            if (type != other.type) {
+                return type < other.type;
+            }
+            return false;
         }
 
     private:
-        DevelopmentType type;
+        string type;
 
         string developmentTypeToString(DevelopmentType type) const {
             switch(type) {
@@ -76,6 +85,27 @@ class DevelopmentCard : public Card {
                 default: return "Unknown";
             }
         }
+
+        DevelopmentType stringToDevelopmentType(const std::string& type) {
+    if (type == "Knight") {
+        return DevelopmentType::KNIGHT;
+    } 
+    else if (type == "Victory Point") {
+        return DevelopmentType::VICTORY_POINT;
+    } 
+    else if (type == "Road Building") {
+        return DevelopmentType::ROAD_BUILDING;
+    } 
+    else if (type == "Year of Plenty") {
+        return DevelopmentType::YEAR_OF_PLENTY;
+    } 
+    else if (type == "Monopoly") {
+        return DevelopmentType::MONOPOLY;
+    } 
+    else {
+        return DevelopmentType::UNKNOWN;
+    }
+}
 
 };
 
