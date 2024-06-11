@@ -131,6 +131,19 @@ void Player::buySettelemnt(){ //continue after there's edges in the board
     }
 }
 
+void Player::buyRoad(){ //continue after there's edges in the board 
+    if (this->hasResource(Resource::Wood, 1) && this->hasResource(Resource::Brick, 1)) {
+        this->removeResource(Resource::Wood, 1);
+        this->removeResource(Resource::Brick, 1);
+
+        roadAmount++;
+        cout << "Road purchased successfully." << endl;
+    } 
+    else {
+        cout << "Purchase failed: Not enough resources." << endl;
+    }
+}
+
 void Player::printPoints(){
     cout << name << " have " << points << " points" << endl;
 }

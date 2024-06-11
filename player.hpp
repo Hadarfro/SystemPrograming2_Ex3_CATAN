@@ -45,6 +45,7 @@ class Player {
             return name;
         }
         void buySettelemnt();
+        void buyRoad();
         void placeSettelemnt(int v,Board& board);
         void placeRoad(int edge,Board board);
         void endTurn();
