@@ -64,6 +64,7 @@ class Board {
     private:
         vector<Tile> tiles;
         vector<Vertex> vertices;
+        vector<Edge> edges;
         string currentPlayerName;
     public:
         Board();
