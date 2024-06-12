@@ -31,6 +31,10 @@ void Player::setIsPlaying(bool flag){
     isPlaying = flag;
 }
 
+bool Player::getIsPlaying(){
+    return isPlaying;
+}
+
 void Player::placeSettelemnt(int v,Board& board){
     size_t u = (size_t) v;
     if(board.getVertcis()[u].owner != ""){ 

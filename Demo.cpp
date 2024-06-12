@@ -62,17 +62,18 @@ int main(){
     //p1.rollDice();// Lets say it's print 4. Then, p2 gets ore from the mountations.
     myCatan.rollDiceOfCurrentPlayer();
     p1.placeRoad(23, board); // p1 continues to build a road.
-    myCatan.nextPlayer();
+    p1.buyRoad();
+    //myCatan.nextPlayer();
     p1.endTurn(); // p1 ends his turn.
 
     //p2.rollDice(); // Lets say it's print 9. Then, p3 gets wool from the Pasture Land, p2 gets wool from the Pasture Land.
     myCatan.rollDiceOfCurrentPlayer();
-    myCatan.nextPlayer();
+    //myCatan.nextPlayer();
     p2.endTurn();  // p2 ends his turn.
 
     //p3.rollDice(); // Lets say it's print 3. Then, p3 gets wheat from the Agricultural Land and Ore from the Mountains, p1 gets wheat from the Agricultural Land.
     myCatan.rollDiceOfCurrentPlayer();
-    myCatan.nextPlayer();
+    //myCatan.nextPlayer();
     p3.endTurn();  // p3 ends his turn.
 
     try
@@ -88,12 +89,12 @@ int main(){
     myCatan.rollDiceOfCurrentPlayer();
     p1.trade(p2, "wood", "brick", 1, 1); // p1 trades 1 wood for 1 brick with p2.
     p1.endTurn();                        // p1 ends his turn.
-    myCatan.nextPlayer();
+    //myCatan.nextPlayer();
 
     //p2.rollDice();           // Lets say it's print 9. Then, p3 gets wool from the Pasture Land, p2 gets wool from the Pasture Land.
     myCatan.rollDiceOfCurrentPlayer();
     p2.buyDevelopmentCard(); // p2 buys a development card. Lets say it is a bonus points card.
-    myCatan.nextPlayer();
+    //myCatan.nextPlayer();
     p2.endTurn();            // p2 ends his turn.
 
     p1.printPoints(); // p1 has 2 points because it has two settelments.

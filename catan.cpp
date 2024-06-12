@@ -76,7 +76,20 @@ void Catan::nextPlayer(){
     cout << "the current player is: " << currentPlayer->getName() << endl;
 }
 
+size_t Catan::getPlayerByName(string name){
+    for(size_t i = 0; i < numPlayers;i++){
+        if(players[i].getName() == name){
+            return i;
+        }
+    }
+    return (size_t)-1;
+}
+
 void Catan::rollDiceOfCurrentPlayer(){
+    size_t i = getPlayerByName(board->getCurrentPlayerName());
+    if(!players[i].getIsPlaying()){
+        nextPlayer();
+    }
     int roll = currentPlayer->rollDice();
     for (size_t i = 0; i < board->getVertcis().size();i++) { //goning over all the vertices
         if (board->getVertcis()[i].owner != "") { //if theres a player on the vertex

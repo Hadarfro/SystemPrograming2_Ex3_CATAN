@@ -196,3 +196,7 @@ void Board::printBoard() const {
         cout << resourceToString(tiles[i].resource) << " (" << tiles[i].number << ")\n";
     }
 }
+
+string Board::getCurrentPlayerName(){
+    return currentPlayerName;
+}

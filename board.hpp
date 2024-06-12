@@ -84,7 +84,7 @@ class Board {
             return vertices;
         }
 
-
+        string getCurrentPlayerName();
         void printBoard() const; 
         //void distributeResources(int roll) const; 
 };

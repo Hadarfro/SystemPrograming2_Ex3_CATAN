@@ -5,6 +5,7 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include <random>
 #include "resource.hpp"
 #include "board.hpp"
 #include "cards.hpp"
@@ -31,6 +32,7 @@ class Player {
             return *this;
         }
         void setIsPlaying(bool flag);
+        bool getIsPlaying();
         int getPoints();
         void addResource(Resource resource, int amount) const;
         void printResources() const {
