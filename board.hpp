@@ -54,8 +54,9 @@ class Edge {
     public:
         int vertex1;
         int vertex2;
-        Edge(int vertex1 = -1, int vertex2 = -1)
-            : vertex1(vertex1), vertex2(vertex2) {}
+        string owner;
+        Edge(int vertex1 = -1, int vertex2 = -1,string owner = "")
+            : vertex1(vertex1), vertex2(vertex2) , owner(owner) {}
     };
 
 // Board class
@@ -84,6 +85,7 @@ class Board {
             return vertices;
         }
 
+        vector<Edge>& getEdges();
         string getCurrentPlayerName();
         void printBoard() const; 
         //void distributeResources(int roll) const; 

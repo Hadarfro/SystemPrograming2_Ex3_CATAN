@@ -6,6 +6,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <random>
+#include <stdexcept>
 #include "resource.hpp"
 #include "board.hpp"
 #include "cards.hpp"
@@ -49,7 +50,7 @@ class Player {
         void buySettelemnt();
         void buyRoad();
         void placeSettelemnt(int v,Board& board);
-        void placeRoad(int edge,Board board);
+        void placeRoad(int edge,Board& board);
         void endTurn();
         int rollDice() const;  
         const string getName() const;

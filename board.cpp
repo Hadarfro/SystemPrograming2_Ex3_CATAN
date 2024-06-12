@@ -125,6 +125,10 @@ Board::Board(const Board& other) {
     this->vertices = other.vertices;
 }
 
+vector<Edge>& Board::getEdges(){
+    return edges;
+}
+
 void Board::printBoard() const {
     if (tiles.size() > 1000000) { // Arbitrary large number for demonstration
             throw std::invalid_argument("Size too large");

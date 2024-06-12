@@ -49,16 +49,18 @@ void Player::placeSettelemnt(int v,Board& board){
     this->SettelemntAmount--;
 }
 
-void Player::placeRoad(int edge,Board board){//need to continue
-    if(this->roadAmount == 0){
+void Player::placeRoad(int edge,Board& board){//need to continue
+    size_t v = (size_t) edge;
+    if(roadAmount == 0){
         cout << "no roads to place" << endl;
         return;
     }
-    // if(board.getEdges()[v].owner != ""){
-    //     cout << "place is taken" << endl;
-    // }
-    // board.getEdges()[v].owner = this->name;
-    //this->roadAmount;
+    if(board.getEdges()[v].owner != ""){
+        cout << "place is taken by " << board.getEdges()[v].owner << endl;
+        return;
+    }
+    board.getEdges()[v].owner = name;
+    roadAmount--;
 }
 
 bool Player::hasResource(Resource resource, int amount) {
