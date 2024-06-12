@@ -52,11 +52,10 @@ class Vertex {
 // Edge class
 class Edge {
     public:
-        int id;
         int vertex1;
         int vertex2;
-        Edge(int id, int vertex1, int vertex2)
-            : id(id), vertex1(vertex1), vertex2(vertex2) {}
+        Edge(int vertex1 = -1, int vertex2 = -1)
+            : vertex1(vertex1), vertex2(vertex2) {}
     };
 
 // Board class
