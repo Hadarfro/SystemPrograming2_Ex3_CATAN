@@ -56,7 +56,12 @@ TEST_CASE("Test Game Logic"){
     Player p3("shira");
     Board board;
     Catan myCatan(p1, p2, p3, Player(), &board);
-
+    
+    myCatan.ChooseStartingPlayer();
+    myCatan.rollDiceOfCurrentPlayer();
+    p1.endTurn();
+    CHECK(myCatan.getCurrentPlayer()->getName() == "hila");
+    
     // Add tests for game logic...
 }
 
@@ -186,5 +191,62 @@ TEST_CASE("PlayerTest, TurnManagement") {
     CHECK(!player.getIsPlaying());
 }
 
+// Test Starting Player
+TEST_CASE("CatanTest, StartingPlayer") {
+    Player p1("Player1"), p2("Player2"), p3("Player3"), p4("Player4");
+    Board board;
+    Catan game(p1, p2, p3, p4, &board);
 
+    game.ChooseStartingPlayer();
+
+    // Add assertions to check if the starting player is chosen correctly
+}
+
+// Test Roll Dice
+TEST_CASE("CatanTest, RollDice") {
+    Player p1("Player1"), p2("Player2"), p3("Player3"), p4("Player4");
+    Board board;
+    Catan game(p1, p2, p3, p4, &board);
+
+    // Test rolling the dice for each player and check if the result is valid
+}
+
+// Test Next Player
+TEST_CASE("CatanTest, NextPlayer") {
+    Player p1("Player1"), p2("Player2"), p3("Player3"), p4("Player4");
+    Board board;
+    Catan game(p1, p2, p3, p4, &board);
+
+    game.nextPlayer();
+    CHECK(game.getCurrentPlayer()->getName() == "Player2");
+    // Add more assertions...
+}
+
+// Test Vertex Availability
+TEST_CASE("CatanTest, VertexAvailability") {
+    Player p1("Player1"), p2("Player2"), p3("Player3"), p4("Player4");
+    Board board;
+    Catan game(p1, p2, p3, p4, &board);
+
+    // Test vertex availability for different cases
+}
+
+// Test Print Winner
+TEST_CASE("CatanTest, PrintWinner") {
+    Player p1("Player1"), p2("Player2"), p3("Player3"), p4("Player4");
+    Board board;
+    Catan game(p1, p2, p3, p4, &board);
+
+    // Simulate game end and check if the winner is printed correctly
+}
+
+// Test Get Player by Name
+TEST_CASE("CatanTest, GetPlayerByName") {
+    Player p1("Player1"), p2("Player2"), p3("Player3"), p4("Player4");
+    Board board;
+    Catan game(p1, p2, p3, p4, &board);
+
+    CHECK(game.getPlayerByName("Player1") == 0);
+    // Add more assertions...
+}
 
