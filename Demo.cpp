@@ -5,6 +5,8 @@
 #include <iostream>
 #include <stdexcept>
 #include <vector>
+#include <cstdlib>  // For rand() and srand()
+#include <ctime>    // For time()
 #include "catan.hpp"
 #include "player.hpp"
 #include "board.hpp"
@@ -14,6 +16,7 @@ using namespace std;
 //using namespace ResourceUtils;
 
 int main(){
+    srand(time(0));
     Player p1("Hadar");
     Player p2("hila");
     Player p3("shira");
@@ -107,4 +110,5 @@ int main(){
 
     myCatan.printWinner(); // Should print None because no player reached 10 points.
     myCatan.printGameState();
+
 }
