@@ -31,9 +31,9 @@ Catan::Catan(Player p1,Player p2,Player p3,Player p4,Board* b) {
 void Catan::printGameState() const {
     cout << "Current player is: " << currentPlayer->getName() << "\n";
     board->printBoard();
-    for (const auto& player : players) {
-        if(player.getName()!= ""){
-            player.printResources();
+    for (size_t i = 0;i < numPlayers;i++) {
+        if(players[i].getName()!= ""){
+            players[i].printResources();
         }
     }
 }

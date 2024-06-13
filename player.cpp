@@ -97,9 +97,11 @@ void Player::trade(Player p, string tradeCard, string givenCard, int amountTrade
         return;
     }
 
-    if (p.hasResource(tradeResource, amountTrade)) {
-        p.removeResource(tradeResource, amountTrade);
-        p.addResource(givenResource, amountGiven);
+    if (p.hasResource(givenResource, amountGiven)&&hasResource(tradeResource, amountTrade)) {
+        p.removeResource(givenResource, amountGiven);
+        p.addResource(tradeResource, amountTrade);
+        addResource(givenResource,amountGiven);
+        removeResource(tradeResource, amountTrade);
         cout << "Trade successful: " << amountTrade << " " << tradeCard << " for " << amountGiven << " " << givenCard << endl;
     } 
     else {

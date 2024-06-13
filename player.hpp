@@ -39,8 +39,8 @@ class Player {
         void printResources() const {
             cout << "the resources of " << name << " is:" << endl;
             for (const auto& pair : ResourceCards) {
-                pair.first.display();
-                cout << "amount of cards: " << pair.second << endl; 
+                cout << "there is " << pair.second << " " << resourceToString(pair.first.getResourceType()) << endl;
+                //cout << "amount of cards: " << pair.second << endl; 
             }
         }
         void addDevelopmentCard(const DevelopmentCard& card);

@@ -62,6 +62,8 @@ int main(){
     //p1.rollDice();// Lets say it's print 4. Then, p2 gets ore from the mountations.
     myCatan.rollDiceOfCurrentPlayer();
     p1.placeRoad(23, board); // p1 continues to build a road.
+    p1.addResource(Resource::Wood,1);
+    p1.addResource(Resource::Brick,1);
     p1.buyRoad();
     //myCatan.nextPlayer();
     p1.endTurn(); // p1 ends his turn.
@@ -87,7 +89,9 @@ int main(){
 
     //p1.rollDice();                       // Lets say it's print 6. Then, p1 gets bricks from the hills.
     myCatan.rollDiceOfCurrentPlayer();
-    p1.trade(p2, "wood", "brick", 1, 1); // p1 trades 1 wood for 1 brick with p2.
+    p1.addResource(Resource::Wood,1);
+    p2.addResource(Resource::Brick,1);
+    p1.trade(p2, "Wood", "Brick", 1, 1); // p1 trades 1 wood for 1 brick with p2.
     p1.endTurn();                        // p1 ends his turn.
     //myCatan.nextPlayer();
 
