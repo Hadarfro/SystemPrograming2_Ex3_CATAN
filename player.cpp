@@ -169,6 +169,7 @@ void Player::buySettelemnt(){ //continue after there's edges in the board
         this->removeResource(Resource::Brick, 1);
 
         SettelemntAmount++;
+        points++;
         cout << "Settelment purchased successfully." << endl;
     } 
     else {

@@ -2,7 +2,7 @@
 #include "doctest.h"
 using namespace doctest;
 
-const int MIN_TESTS = 5;
+const int MIN_TESTS = 10;
 
 int return_code = -1;
 

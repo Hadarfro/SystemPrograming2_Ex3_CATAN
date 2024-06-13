@@ -3,6 +3,7 @@
 #include "board.hpp"
 #include "catan.hpp"
 
+
 /*
  * Author: Hadar Froimowich.
  * ID: 213118458
@@ -129,6 +130,60 @@ TEST_CASE("Test Player Turn and Game Flow"){
     }
 
     // Add more test cases to cover different game flows...
+}
+
+
+// Test Player Resource Management
+TEST_CASE("PlayerTest, ResourceManagement") {
+    Player player("TestPlayer");
+    player.addResource(Resource::Brick, 3);
+    player.addResource(Resource::Wood, 2);
+
+    CHECK(player.hasResource(Resource::Brick, 3));
+    CHECK(player.hasResource(Resource::Wood, 2));
+
+    player.removeResource(Resource::Brick, 2);
+    CHECK(player.hasResource(Resource::Brick, 1));
+
+    // Test adding and removing non-existing resources
+    //CHECK(player.removeResource(Resource::Ore, 1), out_of_range);
+}
+
+// Test Buying Settlements and Roads
+TEST_CASE("PlayerTest, BuyingSettlementsAndRoads") {
+    Player player("TestPlayer");
+    Player p2("Player 2");
+    Player p3("Player 3");
+    Board board;
+    Catan game(player, p2, p3, Player(), &board);
+    player.addResource(Resource::Brick,3);
+    player.addResource(Resource::Sheep,2);
+    player.addResource(Resource::Wheat,2);
+    player.addResource(Resource::Wood,3);
+    player.buySettelemnt();
+    player.buySettelemnt();
+    player.buyRoad();
+
+    CHECK(player.getSettlementAmount() == 4);//at first starting with 2 settlments
+    CHECK(player.getRoadAmount() == 3);
+    CHECK(player.getPoints() == 4);
+}
+
+// Test Gameplay
+TEST_CASE("PlayerTest, Gameplay") {
+    Player player("TestPlayer");
+    Board board;
+    player.placeSettelemnt(1, board);
+    player.placeRoad(2, board);
+    // Add more gameplay tests...
+}
+
+// Test Turn Management
+TEST_CASE("PlayerTest, TurnManagement") {
+    Player player("TestPlayer");
+    player.endTurn();
+
+    CHECK(!player.getIsPlaying());
 }
 
 

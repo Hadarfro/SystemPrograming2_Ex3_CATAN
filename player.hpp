@@ -47,6 +47,12 @@ class Player {
         string& getName(){
             return name;
         }
+        int getSettlementAmount(){
+            return SettelemntAmount;
+        }
+        int getRoadAmount(){
+            return roadAmount;
+        }
         void buySettelemnt();
         void buyRoad();
         void placeSettelemnt(int v,Board& board);
