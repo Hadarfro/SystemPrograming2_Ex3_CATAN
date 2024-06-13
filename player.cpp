@@ -64,6 +64,7 @@ void Player::placeRoad(int edge,Board& board){//need to continue
 }
 
 bool Player::hasResource(Resource resource, int amount) {
+    cout << "you have " << ResourceCards[resource] << " " << resourceToString(resource) << endl;
     return ResourceCards[resource] >= amount;
 }
 
@@ -86,9 +87,10 @@ void Player::addDevelopmentCard(const DevelopmentCard& card) {
 
 void Player::endTurn(){//need to continue
     setIsPlaying(false);
+
 }
 
-void Player::trade(Player p, string tradeCard, string givenCard, int amountTrade, int amountGiven){
+void Player::trade(Player& p, string tradeCard, string givenCard, int amountTrade, int amountGiven){
     Resource tradeResource = stringToResource(tradeCard);
     Resource givenResource = stringToResource(givenCard);
 
@@ -109,14 +111,49 @@ void Player::trade(Player p, string tradeCard, string givenCard, int amountTrade
     }
 }
 
-void Player::buyDevelopmentCard(){ //continue after there's edges in the board 
+
+void Player::buyDevelopmentCard(){ 
     if (this->hasResource(Resource::Wheat, 1) && this->hasResource(Resource::Sheep, 1) && this->hasResource(Resource::Ore, 1)) {
         this->removeResource(Resource::Wheat, 1);
         this->removeResource(Resource::Sheep, 1);
         this->removeResource(Resource::Ore, 1);
+        
+        //Seed random number generator
+        srand(static_cast<unsigned int>(time(nullptr)));
 
-        DevelopmentCard newCard("Development"); // Assuming all development ResourceCards are the same for simplicity.
-        this->addDevelopmentCard(newCard);
+        // Randomly select a type of development card
+        int cardType = rand() % 5; // Assuming 5 types of development cards
+
+        DevelopmentCard* newCard;
+        switch (cardType) {
+            case 0:
+                newCard = new KnightCard();
+                cout << "got a knight" << endl;
+                //this->addDevelopmentCard(newCard);
+                break;
+            case 1:
+                newCard = new VictoryPointCard();
+                cout << name << "got victory point" << endl;
+                points++;
+                break;
+            case 2:
+                newCard = new RoadBuildingCard();
+                cout << name << "got Road Building card" << endl;
+                roadAmount += 2;
+                break;
+            case 3:
+                newCard = new YearOfPlentyCard();
+                cout << name << "got Year Of Plenty Card" << endl;
+                break;
+            case 4:
+                newCard = new MonopolyCard();
+                break;
+            default:
+                cout << "Invalid card type." << endl;
+                return;
+        }
+         // Add the new card to the player's collection (assuming you have a method for this)
+        //this->addDevelopmentCard(newCard);
         cout << "Development card purchased successfully." << endl;
     } 
     else {
@@ -164,4 +201,22 @@ int Player::rollDice() const{
 
 int Player::getPoints(){
     return points;
+}
+
+void Player::addRandomResources() {
+    //Seed random number generator
+    srand(static_cast<unsigned int>(time(nullptr)));
+
+    // Add two random resources
+    for (int i = 0; i < 2; ++i) {
+        // Randomly select a resource type
+        int resourceType = rand() % 5; // Assuming 5 types of resources
+
+        Resource randomResource = static_cast<Resource>(resourceType);
+
+        // Add the random resource to the player's resources
+        addResource(randomResource, 1);
+    }
+
+    cout << "Added 2 random resources to " << name << endl;
 }

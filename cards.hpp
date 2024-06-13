@@ -86,7 +86,7 @@ class DevelopmentCard : public Card {
             }
         }
 
-        DevelopmentType stringToDevelopmentType(const std::string& type) {
+        DevelopmentType stringToDevelopmentType(const string& type) {
     if (type == "Knight") {
         return DevelopmentType::KNIGHT;
     } 
@@ -105,8 +105,35 @@ class DevelopmentCard : public Card {
     else {
         return DevelopmentType::UNKNOWN;
     }
-}
 
+}
 };
+
+class KnightCard : public DevelopmentCard {
+public:
+    KnightCard() : DevelopmentCard("KNIGHT") {}
+};
+
+class VictoryPointCard : public DevelopmentCard {
+public:
+    VictoryPointCard() : DevelopmentCard("VICTORY_POINT") {}
+};
+
+class RoadBuildingCard : public DevelopmentCard {
+public:
+    RoadBuildingCard() : DevelopmentCard("ROAD_BUILDING") {}
+};
+
+class YearOfPlentyCard : public DevelopmentCard {
+public:
+    YearOfPlentyCard() : DevelopmentCard("YEAR_OF_PLENTY") {}
+};
+
+class MonopolyCard : public DevelopmentCard {
+public:
+    MonopolyCard() : DevelopmentCard("MONOPOLY") {}
+};
+
+
 
 #endif // CARD_HPP

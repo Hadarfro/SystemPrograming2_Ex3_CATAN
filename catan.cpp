@@ -40,12 +40,11 @@ void Catan::printGameState() const {
 
 void Catan::ChooseStartingPlayer(){
     // Generate a random number between 1 and 3
-    size_t i = (size_t)rand() % 3 + 1;
-    players[i].setIsPlaying(true);
-    currentPlayer = &players[i];
-    indexOfCurrentP = i;
+    players[0].setIsPlaying(true);
+    currentPlayer = &players[0];
+    indexOfCurrentP = 0;
     //board->setCurrentPlayerName(currentPlayer->getName());
-    cout << "the starting player is: " << players[i].getName() << endl;
+    cout << "the starting player is: " << players[0].getName() << endl;
 }
 
 Board* Catan::getBoard(){
@@ -70,6 +69,10 @@ bool Catan::isVertexAvilable(int v){
 }
 
 void Catan::nextPlayer(){
+    if(currentPlayer->getPoints() == 10){
+        printWinner();
+        return;
+    }
     indexOfCurrentP = (indexOfCurrentP + 1) % 3;
     currentPlayer = &players[indexOfCurrentP];
     //board->setCurrentPlayerName(currentPlayer->getName());
@@ -104,4 +107,8 @@ void Catan::rollDiceOfCurrentPlayer(){
             }
         }
     }
+}
+
+Player* Catan::getCurrentPlayer(){
+    return currentPlayer;
 }

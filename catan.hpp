@@ -29,5 +29,6 @@ class Catan {
         void rollDiceOfCurrentPlayer();
         bool isVertexAvilable(int v);
         void nextPlayer();
+        Player* getCurrentPlayer();
         size_t getPlayerByName(string name);
 };

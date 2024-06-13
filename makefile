@@ -8,8 +8,9 @@ SOURCES = Demo.cpp catan.cpp board.cpp player.cpp cards.cpp TestCounter.cpp Test
 OBJECTS = $(SOURCES:.cpp=.o)
 
 # Default rule to build and run the demo
-run: demo 
+run: demo test
 	./demo 
+	./test
 
 # Rule to build the demo executable
 demo: Demo.o $(filter-out TestCounter.o Test.o, $(OBJECTS))
