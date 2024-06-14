@@ -112,36 +112,40 @@ Plays the Monopoly card.
 #include "player.hpp"
 #include "board.hpp" // Assuming you have a Board class
 
-# Board Class Functions
+# Board Class 
 
-## Constructor
-### `Board::Board()`
-This constructor initializes a game board by creating tiles, vertices, and edges.
-- It initializes the tiles with fixed resources and numbers.
-- Initializes vertices and edges based on the connections between tiles.
+In this section, I provide an implementation of a board class representing a game board for the board of catan. The board consists tiles, vertices, and edges, forming the structure of the game environment.
 
-## Copy Constructor
-### `Board::Board(const Board& other)`
-This constructor creates a copy of the Board object by copying tiles and vertices from another board.
+## board.cpp
 
-## Public Member Functions
+### Constructor
+#### `Board::Board()`
+- Initializes the game board by creating tiles, vertices, and edges.
+- Fixed resources and numbers are assigned to tiles.
+- Vertices are initialized based on the connections between tiles.
 
-### `vector<Edge>& Board::getEdges()`
+### Copy Constructor
+#### `Board::Board(const Board& other)`
+- Creates a copy of the Board object by copying tiles and vertices from another board.
+
+### Public Member Functions
+
+#### `vector<Edge>& Board::getEdges()`
 - Returns a reference to the vector of edges.
 
-### `void Board::printBoard() const`
+#### `void Board::printBoard() const`
 - Prints the resources and numbers of each tile on the board.
 - Throws an exception if the number of tiles is too large.
 
-### `string Board::getCurrentPlayerName()`
+#### `string Board::getCurrentPlayerName()`
 - Returns the name of the current player.
 
 ## Private Member Functions
 
-### `void Board::initializeTiles()`
+#### `void Board::initializeTiles()`
 - Initializes the tiles with fixed resources and numbers.
 
-### `string Board::resourceToString(Resource res)`
+#### `string Board::resourceToString(Resource res)`
 - Converts a Resource enum value to a string representation.
 
 
