@@ -112,7 +112,9 @@ Plays the Monopoly card.
 #include "player.hpp"
 #include "board.hpp" // Assuming you have a Board class
 
-# Board Class 
+ ***
+
+## Class Board 
 
 In this section, I provide an implementation of a board class representing a game board for the board of catan. The board consists tiles, vertices, and edges, forming the structure of the game environment.
 
