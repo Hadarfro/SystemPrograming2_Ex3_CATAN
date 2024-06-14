@@ -108,7 +108,7 @@ Plays the Monopoly card.
 - **Implementation**: Randomly selects a resource type and takes that resource from other players.
 
 ### Usage Example
-```cpp
+
 #include "player.hpp"
 #include "board.hpp" // Assuming you have a Board class
 
