@@ -1,29 +1,147 @@
-# קטאן - מחלקות וירושה
-המתיישבים של קטאן הוא משחק קופסא ל-3 עד 4 שחקנים המשלב הן חשיבה אסטרטגית, ניהול משאבים ויכולת מסחר. מטרת המשחק היא לצבור ראשון 10 נקודות ניצחון.
-את הוראות המשחק המלא ניתן למצוא כאן: https://www.hakubia.com/wp-content/uploads/2021/01/%D7%A7%D7%98%D7%90%D7%9F.pdf.
-במטלה אתם תממשו גרסה פשוטה יותר של המשחק עבור 3 שחקנים.
-## חוקי המשחק
-המשחק מורכב מלוח המכיל 19 חלקות אדמה מוקפות בים. כל חלקת אדמה נותנת משאב כלשהו (חוץ מהמדבר). חלקות האדמה במשחק הן: יער (מניב עץ), גבעות (מניבות לבנים), אדמת מרעה (מניבה צמר), אדמה חקלאית (מניבה שיבולת), הרים (מניבים ברזל), מדבר (לא מניב כלום).
-כל חלקי המפה מקבלים מספר כלשהו בין 2 ל-12. 
-### קלפים, יישובים, ערים ומשאבים
-כל שחקן בעל משאבים (כגון שיבולת, ברזל, לבנים וכו') יכול לרכוש איתם דברים שונים במשחק כמו קלפי פיתוח, יישובים, ערים ודרכים.
-- קלף פיתוח: מחירו של קלף פיתוח הוא ברזל 1, צמר 1 ושיבולת 1. השחקן יכול לקבל אחד מ-3 סוגים שונים של קלפים: 1. קלף קידום: זהו קלף המעניק הטבה לשחקן (לאחר מכן הקלף נעלם). בין הקלפים הללו ניתן למצוא: מונופול - השחקן בוחר משאב כלשהו וכל שאר השחקנים מחוייבים להעביר לו את המשאב הזה. בניית דרכים - השחקן יכול לבנות 2 דרכים במפה ללא עלות. שנת שפע - השחקן זוכה לקבל מהבנק שני קלפים של משאבים לבחירה ולהשתמש בהם באותו התור. 2. אבירים - שחקן המחזיק ב-3 קלפים כאלה, מקבל את קלף הצבא הגדול ביותר המקנה לו 2 נקודות ניצחון (אם איבד אביר אחד, הקלף נלקח מהשחקן. שימו לב שיש בדיוק 3 קלפים כאלה!). 3. קלפי נקודות ניצחון - יש 4 קלפים שונים המעניקים נקודת ניצחון למי שמחזיק בהם.
-- בנייה: ניתן לבנות דרכים, ערים ויישובים בצורה הבאה: 1. קטע דרך: עלותו לבנים 1 ועץ 1. קטע דרך יכול להיות מחובר רק ליישוב (או עיר) בבעלות השחקן או לקטע דרך נוסף. 2. יישוב: עלות היישוב היא לבנה 1, עץ 1, צמר 1 ושיבולת 1. ניתן לבנות יישוב על צומת שאליה מובילה דרך אחת לפחות ומברחק של 2 קטעי דרך מיישוב אחר. בניית יישוב מקנה לשחקן נקודת ניצחון אחת. 3. עיר: עיר יכולה להחליף יישוב קיים. עלות הבנייה היא ברזל 3 ושיבולת 2. ברגע שמשדרגים יישוב לעיר, השחקן מאבד את הנקודה של היישוב ומקבל 2 נקודות על הבנייה. עיר מעניקה לשחקן פי-2 יותר משאבים מכל חבלי הארץ הסמוכים לה.
-- משאבים: כאמור, המשאבים מתקבלים מחבלי הארץ השונים. כאשר שחקן מטיל את קוביות המשחק, כל השחקנים מקבלים משאבים בהתאם למספר שיצא בהטלה (כלומר אם יצא 3 בהטלה, אז שחקנים עם יישובים/ערים הגובלים עם חבלי ארץ בעלי אותו מספר זוכים במשאב).
-- מסחר: שחקנים יכולים לבצע מסחר ביניהם (כלומר להחליף קלפים או משאבים) בהתאם לאיך שהם קובעים.
-### מהלך המשחק
-כל שחקן מתחיל את המשחק עם 2 יישובים ו-2 קטעי דרך המעניקים לו 2 נקודות ניצחון. בנוסף, השחקנים מקבלים משאבים התחלתיים בהתאם למקומות שבהם הם מיקמו את היישובים (משאב אחד מכל משאב אפשרי).
-סדר המשחק נקבע באופן שרירותי (לשיקולכם). בכל תור השחקנים מטילים 2 קוביות. בהתאם לתוצאת ההטלה, השחקנים מקבלים משאבים כמו שפורט מקודם.
-שחקן בתור נתון עושה את הפעולות הבאות לפי הסדר (לאחר הטלת הקוביות):
-- הוא יכול לסחור (כלומר להחליף קלפים או משאבים).
-- הוא יכול לבנות דרכים, יישובים או ערים ויכול לקנות קלפי פיתוח.
-  אם השחקן מנצל את אחד מקלפי הפיתוח שברשותו, התור אוטומטית עובר לשחקן הבא (השחקן יכול לנצל את קלף הפיתוח עוד לפני הטלת הקוביות, במקרה כזה התור עובר לשחקן הבא).
-  אם סכום ההטלה הוא 7, על כל השחקנים בעלי יותר מ-7 קלפי משאבים לבחור מחצית מהקלפים ולהחזיר אותם לערימה.
-  ### סיום המשחק
-  המשחק מסתיים בתור שבו אחד השחקנים הגיע ל-10 או יותר נקודות ניצחון. כדי לנצח במשחק, השחקן צריך שיגיע תורו ובאותו התור יהיו לו 10 נקודות לכל הפחות.
+# Player Class
+
+## Description
+This C++ class represents a player in a game. It includes methods for managing resources, placing settlements and roads on the board, buying development cards, trading resources, and more.
+
+## Author
+- **Hadar Froimowich**
+- **ID:** 213118458
+- **Email:** hadarfro12@gmail.com
+
+## Introduction
+Welcome to my Player class! This class provides functionalities to manage players in a game scenario. From resource management to turn handling and trading, the Player class is designed to facilitate various player-related actions in a game environment.
+
+## Class Structure
+
+### Constructor and Destructor
+- `Player(string myName)`: Initializes a player with the given name and default resources. Implementation: Initializes resource cards to 0, sets settlement and road amounts to default, and sets playing status to false.
+- `~Player()`: Destructor.
+
+### Player Operations
+
+#### `void addResource(Resource resource, int amount)`
+Adds a specified amount of a resource to the player. 
+- **Implementation**: Increases the resource card count for the given resource by the specified amount.
+
+#### `const string getName() const`
+Returns the name of the player.
+- **Implementation**: Returns the name attribute of the player.
+
+#### `void setIsPlaying(bool flag)`
+Sets the playing status of the player.
+- **Implementation**: Sets the `isPlaying` attribute to the provided flag value.
+
+#### `bool getIsPlaying()`
+Returns true if the player is playing.
+- **Implementation**: Returns the value of the `isPlaying` attribute.
+
+#### `void addPoints(int amount)`
+Adds points to the player.
+- **Implementation**: Increases the points attribute by the specified amount.
+
+#### `void placeSettelemnt(int v, Board& board)`
+Places a settlement on the board.
+- **Implementation**: Checks if the specified vertex is available, then sets the owner of the vertex to the player's name and decreases the settlement amount.
+
+#### `void placeRoad(int edge, Board& board)`
+Places a road on the board.
+- **Implementation**: Checks if the specified edge is available, then sets the owner of the edge to the player's name and decreases the road amount.
+
+#### `bool hasResource(Resource resource, int amount)`
+Checks if the player has a certain amount of a resource.
+- **Implementation**: Returns true if the player has at least the specified amount of the given resource.
+
+#### `void removeResource(Resource resource, int amount)`
+Removes a specified amount of a resource from the player.
+- **Implementation**: Decreases the resource card count for the given resource by the specified amount if the player has enough resources.
+
+#### `void addDevelopmentCard(DevelopmentCard* card)`
+Adds a development card to the player.
+- **Implementation**: Increases the count of the specific development card owned by the player.
+
+#### `void endTurn()`
+Ends the player's turn.
+- **Implementation**: Sets the playing status of the player to false.
+
+#### `void trade(Player& p, string tradeCard, string givenCard, int amountTrade, int amountGiven)`
+Trades resources with another player.
+- **Implementation**: Transfers specified resources between two players if conditions are met.
+
+#### `void buyDevelopmentCard()`
+Buys a development card.
+- **Implementation**: Checks if the player has enough resources to buy a card, then randomly selects and adds a development card to the player's collection.
+
+#### `void buySettelemnt()`
+Buys a settlement.
+- **Implementation**: Checks if the player has enough resources to buy a settlement, then increases settlement amount and points.
+
+#### `void buyRoad()`
+Buys a road.
+- **Implementation**: Checks if the player has enough resources to buy a road, then increases road amount.
+
+#### `void printPoints()`
+Prints the player's points.
+- **Implementation**: Prints the points attribute of the player.
+
+#### `int rollDice() const`
+Rolls the dice and returns the result.
+- **Implementation**: Generates a random number between 2 and 12 (inclusive) and returns the result.
+
+#### `int getPoints()`
+Returns the player's points.
+- **Implementation**: Returns the points attribute of the player.
+
+#### `void addRandomResources()`
+Adds random resources to the player.
+- **Implementation**: Adds two random resources to the player's resource cards.
+
+#### `void addParticipants(Player* newParticipants[])`
+Adds participants to the game.
+- **Implementation**: Copies the array of participants to the internal array of the Player object.
+
+#### `map<ResourceCard, int> getResourceCard()`
+Returns the player's resource cards.
+- **Implementation**: Returns the map containing resource cards and their counts.
+
+#### `void playMonopolCard()`
+Plays the Monopoly card.
+- **Implementation**: Randomly selects a resource type and takes that resource from other players.
+
+### Usage Example
+```cpp
+#include "player.hpp"
+#include "board.hpp" // Assuming you have a Board class
+
+# Board Class Functions
+
+## Constructor
+### `Board::Board()`
+This constructor initializes a game board by creating tiles, vertices, and edges.
+- It initializes the tiles with fixed resources and numbers.
+- Initializes vertices and edges based on the connections between tiles.
+
+## Copy Constructor
+### `Board::Board(const Board& other)`
+This constructor creates a copy of the Board object by copying tiles and vertices from another board.
+
+## Public Member Functions
+
+### `vector<Edge>& Board::getEdges()`
+- Returns a reference to the vector of edges.
+
+### `void Board::printBoard() const`
+- Prints the resources and numbers of each tile on the board.
+- Throws an exception if the number of tiles is too large.
+
+### `string Board::getCurrentPlayerName()`
+- Returns the name of the current player.
+
+## Private Member Functions
+
+### `void Board::initializeTiles()`
+- Initializes the tiles with fixed resources and numbers.
+
+### `string Board::resourceToString(Resource res)`
+- Converts a Resource enum value to a string representation.
 
 
-שימו לב - במטלה הזאת אתם לא מקבלים קבצים לדוגמה מלבד הדמו. עליכם לחשוב לבד על הלוגיקה של המשחק ולממש את החוקים (כמובן שאתם יכולים לממש לפי ראות עיניכם אבל עם הסבר). במטלה הזאת אתם תיבחנו גם על יצירתיות. נסו לבנות את לוח המשחק בצורה שתתאים למשחק המקורי (חשבו איך לממש דבר כזה, אולי להוסיף עוד מחלקות?). כמו כן, **חובה** לצרף בדיקות יחידה למטלה הזאת. הסיבה היא פשוטה - המטלה מורכבת מאוד ואתם נדרשים לבדוק את הקוד שלכם. 
-
-יש להוסיף קובץ Makefile כאשר הפקודה ``` make catan ``` מריצה את התוכנית הראשית שלכם (המדגימה סיבוב אחד במשחק). עליכם להגיש קובץ ```README``` המסביר את המימוש שלכם (כלומר מהם חוקי המשחק שהגדרתם), ההיררכיה של המחלקות ובאילו ספריות השתמשתם. עליכם גם לתאר את כל השיטות שכתבתם, ולכתוב תוכנית ```main``` המריצה סיבוב תקין של המשחק. כמו כן, עליכם לכתוב בתחילת כל קובץ את מספר תעודת הזהות שלכם ואת המייל. אי עמידה בהנחיות תגרור הפחתה בציון. 
-בהצלחה!
