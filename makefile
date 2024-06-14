@@ -1,3 +1,9 @@
+# /*
+#  * Author: Hadar Froimowich.
+#  * ID: 213118458
+#  * Email: hadarfro12@gmail.com
+#  */
+
 # Compiler and flags
 CXX = clang++
 CXXFLAGS = -std=c++11 -Werror -Wsign-conversion 

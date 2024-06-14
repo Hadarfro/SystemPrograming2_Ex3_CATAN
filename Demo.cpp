@@ -1,7 +1,9 @@
-/**
- * Demo file for Ex3.
- *
+/*
+ * Author: Hadar Froimowich.
+ * ID: 213118458
+ * Email: hadarfro12@gmail.com
  */
+
 #include <iostream>
 #include <stdexcept>
 #include <vector>

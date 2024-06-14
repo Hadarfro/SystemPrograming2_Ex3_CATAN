@@ -1,3 +1,9 @@
+/*
+ * Author: Hadar Froimowich.
+ * ID: 213118458
+ * Email: hadarfro12@gmail.com
+ */
+
 #define DOCTEST_CONFIG_IMPLEMENT
 #include "doctest.h"
 using namespace doctest;

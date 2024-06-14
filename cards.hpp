@@ -1,3 +1,9 @@
+/*
+ * Author: Hadar Froimowich.
+ * ID: 213118458
+ * Email: hadarfro12@gmail.com
+ */
+
 #ifndef CARD_HPP
 #define CARD_HPP
 

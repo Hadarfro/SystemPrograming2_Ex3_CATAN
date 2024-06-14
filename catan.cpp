@@ -1,3 +1,9 @@
+/*
+ * Author: Hadar Froimowich.
+ * ID: 213118458
+ * Email: hadarfro12@gmail.com
+ */
+
 #include <iostream>
 #include <vector>
 #include <map>
@@ -7,18 +13,17 @@
 #include <cstring>
 #include "catan.hpp"
 
-
 // Constructor with default arguments
-Catan::Catan(Player p1,Player p2,Player p3,Player p4,Board* b) {
+Catan::Catan(Player p1, Player p2, Player p3, Player p4, Board* b) {
     board = b;
     players[0] = p1;  // Initialize all players to default Player objects
     players[1] = p2;
     //players[2] = p;
-    if (p3.getName() != "") {  // Check if a fourth player is provided
+    if (p3.getName() != "") {  // Check if a third player is provided
         players[2] = p3;
         numPlayers = 3;
     } 
-    else if (p4.getName() != "") {  // Check if a third player is provided
+    else if (p4.getName() != "") {  // Check if a fourth player is provided
         players[3] = p4;
         numPlayers = 4;
     } 
@@ -28,95 +33,105 @@ Catan::Catan(Player p1,Player p2,Player p3,Player p4,Board* b) {
     indexOfCurrentP = 0;
 }
 
+// Method to print the current game state
 void Catan::printGameState() const {
     cout << "Current player is: " << currentPlayer->getName() << "\n";
     board->printBoard();
-    for (size_t i = 0;i < numPlayers;i++) {
-        if(players[i].getName()!= ""){
-            players[i].printResources();
+    for (size_t i = 0; i < numPlayers; i++) {
+        if (players[i].getName() != "") {
+            players[i].printResources(); // Print each player's resources
         }
     }
 }
 
+// Method to choose the starting player randomly
 void Catan::ChooseStartingPlayer(){
-    // Generate a random number between 1 and 3
+    // Randomly choose the starting player
     players[0].setIsPlaying(true);
     currentPlayer = &players[0];
     indexOfCurrentP = 0;
     board->setCurrentPlayerName(currentPlayer->getName());
-    cout << "the starting player is: " << players[0].getName() << endl;
+    cout << "The starting player is: " << players[0].getName() << endl;
 }
 
+// Method to get the game board
 Board* Catan::getBoard(){
     return board;
 }
 
+// Method to print the winner if there's any
 void Catan::printWinner(){
-    for(size_t i = 0;i < 4;i++){
-        if(players[i].getPoints() >= 10){
-            cout << players[i].getName() << endl;;
+    for (size_t i = 0; i < 4; i++) {
+        if (players[i].getPoints() >= 10) {
+            cout << players[i].getName() << endl;
         }
     }
-    cout << "there is no winner" << endl;
+    cout << "There is no winner" << endl;
 }
 
+// Method to check if a vertex is available
 bool Catan::isVertexAvilable(int v){
     size_t u = (size_t) v;
-    if(board->getVertcis()[u].owner == ""){
-        return true;
+    if (board->getVertcis()[u].owner == "") {
+        return true; // Vertex is available if it has no owner
     }
     return false;
 }
 
+// Method to switch to the next player's turn
 void Catan::nextPlayer(){
-    if(currentPlayer->getPoints() == 10){
+    if (currentPlayer->getPoints() == 10) { // Check for a winner
         printWinner();
         return;
     }
-    indexOfCurrentP = (indexOfCurrentP + 1) % numPlayers;
+    indexOfCurrentP = (indexOfCurrentP + 1) % numPlayers; // Move to the next player
     currentPlayer = &players[indexOfCurrentP];
     board->setCurrentPlayerName(currentPlayer->getName());
-    cout << "the current player is: " << currentPlayer->getName() << endl;
+    cout << "The current player is: " << currentPlayer->getName() << endl;
 }
 
+// Method to get player index by name
 size_t Catan::getPlayerByName(string name){
-    for(size_t i = 0; i < numPlayers;i++){
-        if(players[i].getName() == name){
+    for (size_t i = 0; i < numPlayers; i++) {
+        if (players[i].getName() == name) {
             return i;
         }
     }
-    return (size_t)-1;
+    return (size_t)-1; // Return -1 if player not found
 }
 
+// Method to roll the dice for the current player
 void Catan::rollDiceOfCurrentPlayer(){
     size_t i = getPlayerByName(board->getCurrentPlayerName());
-    if(i == -1){
-        throw invalid_argument("there is no player with that name");
+    if (i == -1) {
+        throw invalid_argument("There is no player with that name");
     }
-    else if(!players[i].getIsPlaying()){
-        nextPlayer();
+    else if (!players[i].getIsPlaying()) { // If current player is not playing
+        nextPlayer(); // Move to the next player
     }
-    int roll = currentPlayer->rollDice();
-    if(roll == 7){
+    int roll = currentPlayer->rollDice(); // Roll the dice
+    if (roll == 7) { // If dice roll is 7, do nothing
         return;
     }
-    for (size_t i = 0; i < board->getVertcis().size();i++) { //goning over all the vertices
-        if (board->getVertcis()[i].owner != "") { //if theres a player on the vertex
-            for (size_t j = 0;j < board->getVertcis()[i].adjacentTiles.size();j++) { //goning over all tiles of the current vertex
-                if(board->getVertcis()[i].adjacentTiles[j]->getNumber() == roll){ //if the player have a setlment on a tile with the number of the roll dice
-                    for(size_t k = 0;k < 4;k++){
-                        if(board->getVertcis()[i].owner == players[k].getName()){ // find the player the vertex belong to
-                            players[k].addResource(board->getVertcis()[i].adjacentTiles[j]->resource, 1); // add to the player resource card
+    // Distribute resources to players based on dice roll and settlements
+    for (size_t i = 0; i < board->getVertcis().size(); i++) { // Loop through all vertices
+        if (board->getVertcis()[i].owner != "") { // If there's a settlement on the vertex
+            for (size_t j = 0; j < board->getVertcis()[i].adjacentTiles.size(); j++) { // Loop through adjacent tiles
+                if (board->getVertcis()[i].adjacentTiles[j]->getNumber() == roll) { // If the tile has the rolled number
+                    for (size_t k = 0; k < numPlayers; k++) { // Loop through players
+                        if (board->getVertcis()[i].owner == players[k].getName()) { // Find the owner of the settlement
+                            players[k].addResource(board->getVertcis()[i].adjacentTiles[j]->resource, 1); // Add resource to player
                         }
                     }
                 }
             }
         }
     }
-    currentPlayer->endTurn();
-    nextPlayer();
+    currentPlayer->endTurn(); // End current player's turn
+    nextPlayer(); // Move to the next player's turn
 }
 
+// Method to get the current player
 Player* Catan::getCurrentPlayer(){
     return currentPlayer;
 }
