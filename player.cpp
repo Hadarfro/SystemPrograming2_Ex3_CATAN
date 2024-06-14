@@ -29,10 +29,14 @@ const string Player::getName() const{
 
 void Player::setIsPlaying(bool flag){
     isPlaying = flag;
+    cout << "the player is " << flag << " playing" << endl;
 }
 
 bool Player::getIsPlaying(){
     return isPlaying;
+}
+void Player::addPoints(int amount){
+    points += amount; 
 }
 
 void Player::placeSettelemnt(int v,Board& board){
@@ -74,20 +78,13 @@ void Player::removeResource(Resource resource, int amount) {
     }
 }
 
-void Player::addDevelopmentCard(const DevelopmentCard& card) {
-    //  Increment the count if the card exists, otherwise add it with count 1
-    auto it = DevelopmentCards.find(card);
-    if (it != DevelopmentCards.end()) {
-        ++(it->second);
-    } 
-    else {
-        DevelopmentCards[card] = 1;
-    }
+void Player::addDevelopmentCard(DevelopmentCard* card) {
+    DevelopmentCards[card]++;
 }
 
 void Player::endTurn(){//need to continue
     setIsPlaying(false);
-
+    cout << name << " has ended his turn" << endl;
 }
 
 void Player::trade(Player& p, string tradeCard, string givenCard, int amountTrade, int amountGiven){
@@ -124,12 +121,12 @@ void Player::buyDevelopmentCard(){
         // Randomly select a type of development card
         int cardType = rand() % 5; // Assuming 5 types of development cards
 
-        DevelopmentCard* newCard;
+        DevelopmentCard* newCard = nullptr;
         switch (cardType) {
             case 0:
                 newCard = new KnightCard();
                 cout << "got a knight" << endl;
-                //this->addDevelopmentCard(newCard);
+                this->addDevelopmentCard(newCard);
                 break;
             case 1:
                 newCard = new VictoryPointCard();
@@ -144,6 +141,7 @@ void Player::buyDevelopmentCard(){
             case 3:
                 newCard = new YearOfPlentyCard();
                 cout << name << "got Year Of Plenty Card" << endl;
+                addRandomResources();
                 break;
             case 4:
                 newCard = new MonopolyCard();

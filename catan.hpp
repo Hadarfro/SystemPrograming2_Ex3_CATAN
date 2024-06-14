@@ -18,7 +18,7 @@ class Catan {
         Player players[4];
         Player* currentPlayer;
         size_t indexOfCurrentP;
-        int numPlayers;
+        unsigned int numPlayers;
 
     public:
         Catan(Player p1,Player p2,Player p3 = Player(),Player p4 = Player(),Board* b = nullptr); //initializer list

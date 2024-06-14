@@ -58,21 +58,67 @@ TEST_CASE("Test Game Logic"){
     Catan myCatan(p1, p2, p3, Player(), &board);
     
     myCatan.ChooseStartingPlayer();
+    CHECK(myCatan.getCurrentPlayer()->getName() == "Hadar");
     myCatan.rollDiceOfCurrentPlayer();
-    p1.endTurn();
+    myCatan.rollDiceOfCurrentPlayer();
     CHECK(myCatan.getCurrentPlayer()->getName() == "hila");
     
-    // Add tests for game logic...
 }
 
+// Test cases for board functions...
 TEST_CASE("Test Board Functions"){
     Board testBoard;
 
-    // Test cases for board functions...
+    // Test invalid vertex access
+    SUBCASE("Invalid Vertex Access") {
+        int invalidVertexIndex = -1;
+        if (invalidVertexIndex < 0) {
+            CHECK_THROWS_AS(testBoard.getVertcis().at(static_cast<size_t>(invalidVertexIndex)), std::out_of_range);
+        }
+    }
+
+    // Test invalid edge access
+    SUBCASE("Invalid Edge Access") {
+        int invalidEdgeIndex = -1;
+        if (invalidEdgeIndex < 0) {
+            CHECK_THROWS_AS(testBoard.getEdges().at(static_cast<size_t>(invalidEdgeIndex)), std::out_of_range);
+        }
+    }
+
+    
 }
 
+// Test cases for winning conditions...
 TEST_CASE("Test Winning Conditions"){
-    // Test cases for winning conditions...
+    Player p1("Player1");
+    Player p2("Player2");
+    Player p3("Player3");
+    Player p4("Player4");
+    Board board;
+    Catan game(p1, p2, p3, p4, &board);
+
+    // Simulate extreme resource accumulation for winning
+    SUBCASE("Extreme Resource Accumulation") {
+        for (int i = 0; i < 100; ++i) {
+            p1.addResource(Resource::Brick, 1);
+            p1.addResource(Resource::Wood, 1);
+            p1.addResource(Resource::Sheep, 1);
+            p1.addResource(Resource::Wheat, 1);
+        }
+
+        CHECK(p1.hasResource(Resource::Brick, 100));
+        CHECK(p1.hasResource(Resource::Wood, 100));
+        CHECK(p1.hasResource(Resource::Sheep, 100));
+        CHECK(p1.hasResource(Resource::Wheat, 100));
+    }
+
+    // Test player winning with extreme points
+    SUBCASE("Winning with Extreme Points") {
+        // p1.addPoints(20);
+        // CHECK(p1.getPoints() == 20);
+        // CHECK(game.checkWinningConditions() == true);
+    }
+    
 }
 
 TEST_CASE("Test Player Turn and Game Flow"){
@@ -134,7 +180,27 @@ TEST_CASE("Test Player Turn and Game Flow"){
         CHECK(game.getCurrentPlayer()->getIsPlaying() == false);
     }
 
-    // Add more test cases to cover different game flows...
+
+    // Test multiple consecutive turns without rotation
+    SUBCASE("Consecutive Turns Without Rotation") {
+        for (int i = 0; i < 10; ++i) {
+            game.getCurrentPlayer()->addResource(Resource::Wood, 1);
+            game.getCurrentPlayer()->addResource(Resource::Brick, 1);
+        }
+
+        CHECK(game.getCurrentPlayer()->hasResource(Resource::Wood, 10));
+        CHECK(game.getCurrentPlayer()->hasResource(Resource::Brick, 10));
+    }
+
+    // Test rapid turn rotation
+    SUBCASE("Rapid Turn Rotation") {
+        for (int i = 0; i < 100; ++i) {
+            game.nextPlayer();
+        }
+
+        CHECK(game.getCurrentPlayer()->getName() == "Player 2");
+    }
+
 }
 
 
@@ -247,6 +313,5 @@ TEST_CASE("CatanTest, GetPlayerByName") {
     Catan game(p1, p2, p3, p4, &board);
 
     CHECK(game.getPlayerByName("Player1") == 0);
-    // Add more assertions...
 }
 

@@ -4,7 +4,9 @@
 #include <string>
 #include <iostream>
 #include "resource.hpp"
+
 using namespace std;
+class Player;
 //using namespace ResourceUtils;
 
 // Base Card class

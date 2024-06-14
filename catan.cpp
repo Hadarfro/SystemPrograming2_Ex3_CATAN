@@ -43,7 +43,7 @@ void Catan::ChooseStartingPlayer(){
     players[0].setIsPlaying(true);
     currentPlayer = &players[0];
     indexOfCurrentP = 0;
-    //board->setCurrentPlayerName(currentPlayer->getName());
+    board->setCurrentPlayerName(currentPlayer->getName());
     cout << "the starting player is: " << players[0].getName() << endl;
 }
 
@@ -73,9 +73,9 @@ void Catan::nextPlayer(){
         printWinner();
         return;
     }
-    indexOfCurrentP = (indexOfCurrentP + 1) % 3;
+    indexOfCurrentP = (indexOfCurrentP + 1) % numPlayers;
     currentPlayer = &players[indexOfCurrentP];
-    //board->setCurrentPlayerName(currentPlayer->getName());
+    board->setCurrentPlayerName(currentPlayer->getName());
     cout << "the current player is: " << currentPlayer->getName() << endl;
 }
 
@@ -90,10 +90,16 @@ size_t Catan::getPlayerByName(string name){
 
 void Catan::rollDiceOfCurrentPlayer(){
     size_t i = getPlayerByName(board->getCurrentPlayerName());
-    if(!players[i].getIsPlaying()){
+    if(i == -1){
+        throw invalid_argument("there is no player with that name");
+    }
+    else if(!players[i].getIsPlaying()){
         nextPlayer();
     }
     int roll = currentPlayer->rollDice();
+    if(roll == 7){
+        return;
+    }
     for (size_t i = 0; i < board->getVertcis().size();i++) { //goning over all the vertices
         if (board->getVertcis()[i].owner != "") { //if theres a player on the vertex
             for (size_t j = 0;j < board->getVertcis()[i].adjacentTiles.size();j++) { //goning over all tiles of the current vertex
@@ -107,6 +113,8 @@ void Catan::rollDiceOfCurrentPlayer(){
             }
         }
     }
+    currentPlayer->endTurn();
+    nextPlayer();
 }
 
 Player* Catan::getCurrentPlayer(){
