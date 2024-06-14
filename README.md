@@ -150,4 +150,89 @@ In this section, I provide an implementation of a board class representing a gam
 #### `string Board::resourceToString(Resource res)`
 - Converts a Resource enum value to a string representation.
 
+***
+# Catan Class
+
+## Introduction
+
+The Catan class represents the logic for managing a game of Catan. It includes methods for initializing the game, managing player turns, rolling dice, and determining the game's state. This class integrates with other components such as the Player and Board classes to simulate the gameplay.
+
+## catan.cpp
+
+### Constructor
+#### `Catan::Catan(Player p1, Player p2, Player p3, Player p4, Board* b)`
+- Initializes the Catan game with up to four players and a game board.
+- Checks the number of provided players and sets the `numPlayers` attribute accordingly.
+- Sets the first player as the current player.
+
+### Public Member Functions
+
+#### `void Catan::printGameState() const`
+- Prints the current game state including the current player, board state, and each player's resources.
+
+#### `void Catan::ChooseStartingPlayer()`
+- Randomly selects the starting player.
+- Sets the selected player as the current player and updates the board.
+
+#### `Board* Catan::getBoard()`
+- Returns a pointer to the game board.
+
+#### `void Catan::printWinner()`
+- Checks if any player has reached the winning condition (10 points).
+- Prints the winner's name if there is one, otherwise prints "There is no winner".
+
+#### `bool Catan::isVertexAvilable(int v)`
+- Checks if a vertex is available for building (i.e., it has no owner).
+
+#### `void Catan::nextPlayer()`
+- Switches to the next player's turn.
+- Prints the name of the new current player.
+- Checks if the current player has won the game (10 points).
+
+#### `size_t Catan::getPlayerByName(string name)`
+- Finds and returns the index of a player by their name.
+- Returns -1 if the player is not found.
+
+#### `void Catan::rollDiceOfCurrentPlayer()`
+- Rolls the dice for the current player and distributes resources based on the roll.
+- If a 7 is rolled, no resources are distributed.
+- Ends the current player's turn and moves to the next player's turn.
+
+#### `Player* Catan::getCurrentPlayer()`
+- Returns a pointer to the current player.
+
+## Player Class
+
+### Constructor and Destructor
+
+- `Player` Default constructor to initialize a player with default values.
+- `~Player` Destructor to deallocate memory.
+
+### Player Operations
+
+- `getName` Returns the player's name.
+- `getPoints` Returns the player's current points.
+- `getIsPlaying` Checks if the player is currently playing.
+- `printResources` Prints the player's resources.
+- `setIsPlaying` Sets the player's playing status.
+- `rollDice` Rolls the dice for the player and returns the result.
+- `addResource` Adds resources to the player's inventory.
+- `endTurn` Ends the player's turn.
+
+## Board Class
+
+### Constructor and Destructor
+
+- `Board` Default constructor to initialize the game board.
+- `~Board` Destructor to deallocate memory.
+
+### Board Operations
+
+- `getEdges` Returns a reference to the vector of edges.
+- `printBoard` Prints the resources and numbers of each tile on the board.
+- `getCurrentPlayerName` Returns the name of the current player.
+- `setCurrentPlayerName` Sets the name of the current player.
+- `getVertcis` Returns a vector of vertices on the board.
+
+
 
