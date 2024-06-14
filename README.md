@@ -269,4 +269,65 @@ This class provides utility functions for converting between `Resource` enum val
 Resource res = Resource::Wood;
 string resStr = resourceToString(res);  // resStr will be "Wood"
 
+***
+# Card Class
+
+## Description
+The `Card` class and its derived classes represent different types of cards used in a game. The base class `Card` defines common attributes and methods, while the derived classes `ResourceCard` and `DevelopmentCard` represent specific types of cards, demonstrating inheritance in C++.
+
+## Author
+- **Hadar Froimowich**
+- **ID:** 213118458
+- **Email:** hadarfro12@gmail.com
+
+## Introduction
+The Card class hierarchy demonstrates the use of inheritance in object-oriented programming. The base class `Card` defines common properties and methods shared by all types of cards, while the derived classes `ResourceCard` and `DevelopmentCard` extend this functionality with specific attributes and behaviors.
+
+## Class Structure
+
+### Card (Base Class)
+
+#### Public Methods
+- `virtual string getType() const = 0`: Pure virtual function to get the type of the card.
+- `virtual void display() const = 0`: Pure virtual function to display the card information.
+- `virtual ~Card() = default`: Virtual destructor for proper cleanup of derived classes.
+
+### ResourceCard (Derived from Card)
+
+#### Constructor
+- `ResourceCard(Resource type)`: Initializes a resource card with a specific resource type.
+
+#### Public Methods
+- `string getType() const override`: Returns "Resource".
+- `Resource getResourceType() const`: Returns the specific resource type of the card.
+- `void display() const override`: Displays the resource card type.
+- `bool operator<(const ResourceCard& other) const`: Compares two `ResourceCard` objects based on resource types.
+
+### DevelopmentCard (Derived from Card)
+
+#### Constructor
+- `DevelopmentCard(string type)`: Initializes a development card with a specific type.
+
+#### Public Methods
+- `string getType() const override`: Returns "Development".
+- `DevelopmentType getDevelopmentType()`: Returns the specific development card type.
+- `void display() const override`: Displays the development card type.
+- `bool operator<(const DevelopmentCard& other) const`: Compares two `DevelopmentCard` objects based on card types.
+
+#### DevelopmentType (Nested Enum)
+- `enum class DevelopmentType { KNIGHT, VICTORY_POINT, ROAD_BUILDING, YEAR_OF_PLENTY, MONOPOLY, UNKNOWN }`: Enumerates different types of development cards.
+
+### Derived Development Card Classes
+- `KnightCard`: Represents a Knight development card.
+- `VictoryPointCard`: Represents a Victory Point development card.
+- `RoadBuildingCard`: Represents a Road Building development card.
+- `YearOfPlentyCard`: Represents a Year of Plenty development card.
+- `MonopolyCard`: Represents a Monopoly development card.
+
+## Inheritance
+- **Base Class (`Card`)**: Defines common properties and methods.
+- **Derived Classes (`ResourceCard`, `DevelopmentCard`, and their subclasses)**: Inherit from the base class and extend its functionality with specific attributes and methods.
+
+
+
 
