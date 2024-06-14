@@ -275,11 +275,6 @@ string resStr = resourceToString(res);  // resStr will be "Wood"
 ## Description
 The `Card` class and its derived classes represent different types of cards used in a game. The base class `Card` defines common attributes and methods, while the derived classes `ResourceCard` and `DevelopmentCard` represent specific types of cards, demonstrating inheritance in C++.
 
-## Author
-- **Hadar Froimowich**
-- **ID:** 213118458
-- **Email:** hadarfro12@gmail.com
-
 ## Introduction
 The Card class hierarchy demonstrates the use of inheritance in object-oriented programming. The base class `Card` defines common properties and methods shared by all types of cards, while the derived classes `ResourceCard` and `DevelopmentCard` extend this functionality with specific attributes and behaviors.
 
