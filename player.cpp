@@ -145,6 +145,7 @@ void Player::buyDevelopmentCard(){
                 break;
             case 4:
                 newCard = new MonopolyCard();
+                playMonopolCard();
                 break;
             default:
                 cout << "Invalid card type." << endl;
@@ -218,4 +219,33 @@ void Player::addRandomResources() {
     }
 
     cout << "Added 2 random resources to " << name << endl;
+}
+
+void Player::addParticipants(Player* newParticipants[]){
+    for (size_t i = 0; i < 4; i++){
+        participants[i] = newParticipants[i];
+    }    
+}
+
+map<ResourceCard, int> Player::getResourceCard(){
+    return ResourceCards;
+}
+
+void Player::playMonopolCard(){
+    int amount = 0;
+    int currentAmount = 0;
+    // Randomly select a resource type
+    int resourceType = rand() % 5; // Assuming 5 types of resources
+    Resource randomResource = static_cast<Resource>(resourceType);
+    for(size_t i = 0;i < 4;i++){
+        currentAmount = 0;
+        if(participants[i]->getName() != "" && participants[i]->getName() != name){
+            if(participants[i]->hasResource(randomResource,1)){
+                currentAmount = participants[i]->getResourceCard()[randomResource];
+                amount += currentAmount;
+                participants[i]->removeResource(randomResource,currentAmount);
+            }
+        }
+    }
+    addResource(randomResource,amount);
 }

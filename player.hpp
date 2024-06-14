@@ -20,13 +20,17 @@ class Player {
         string name;
         mutable map<ResourceCard, int> ResourceCards; // cards can be modified even if it's a part of an object that is declared as const
         mutable map<DevelopmentCard*, int> DevelopmentCards;
+        Player* participants[4];
         int SettelemntAmount;
         int roadAmount;
         int points;
         bool isPlaying;
     public:
         Player(string name = "");// initillezed list
+        void addParticipants(Player* participants[]);
         void setIsPlaying(bool flag);
+        map<ResourceCard, int> getResourceCard();
+        void playMonopolCard();
         bool getIsPlaying();
         int getPoints();
         void addResource(Resource resource, int amount) const;
