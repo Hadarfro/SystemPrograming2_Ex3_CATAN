@@ -141,30 +141,26 @@ void Player::buyDevelopmentCard(){
         // Randomly select a type of development card
         int cardType = rand() % 5; // Assuming 5 types of development cards
 
-        DevelopmentCard* newCard = nullptr;
+        //DevelopmentCard* newCard = nullptr;
         switch (cardType) {
             case 0:
-                newCard = new KnightCard();
+                //newCard = new KnightCard();
                 cout << "got a knight" << endl;
-                this->addDevelopmentCard(newCard);
+                //this->addDevelopmentCard(newCard);
                 break;
             case 1:
-                newCard = new VictoryPointCard();
                 cout << name << " got a victory point" << endl;
                 points++;
                 break;
             case 2:
-                newCard = new RoadBuildingCard();
                 cout << name << " got a Road Building card" << endl;
                 roadAmount += 2;
                 break;
             case 3:
-                newCard = new YearOfPlentyCard();
                 cout << name << " got a Year Of Plenty Card" << endl;
                 addRandomResources();
                 break;
             case 4:
-                newCard = new MonopolyCard();
                 playMonopolCard();
                 break;
             default:

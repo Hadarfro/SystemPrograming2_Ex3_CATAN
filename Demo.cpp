@@ -69,6 +69,10 @@ int main(){
     p1.placeRoad(23, board); // p1 continues to build a road.
     p1.addResource(Resource::Wood,1);
     p1.addResource(Resource::Brick,1);
+    p1.addResource(Resource::Wheat,1);
+    p1.addResource(Resource::Sheep,1);
+    p1.addResource(Resource::Ore,1);
+    p1.buyDevelopmentCard();
     p1.buyRoad();
     //myCatan.nextPlayer();
     p1.endTurn(); // p1 ends his turn.
