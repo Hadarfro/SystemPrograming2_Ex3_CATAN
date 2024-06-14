@@ -114,7 +114,7 @@ Plays the Monopoly card.
 
  ***
 
-## Class Board 
+## Board Class 
 
 In this section, I provide an implementation of a board class representing a game board for the board of catan. The board consists tiles, vertices, and edges, forming the structure of the game environment.
 
@@ -234,5 +234,39 @@ The Catan class represents the logic for managing a game of Catan. It includes m
 - `setCurrentPlayerName` Sets the name of the current player.
 - `getVertcis` Returns a vector of vertices on the board.
 
+***
+# Resource Class
+
+## Introduction
+
+This class provides utility functions for converting between `Resource` enum values and their corresponding string representations. The `Resource` enum represents different types of resources used in the game of Catan, and these functions facilitate the conversion needed for displaying resource names and processing resource inputs.
+
+## resource.hpp
+
+### Enum Class
+#### `enum class Resource { Wood, Brick, Sheep, Wheat, Ore, Sea, Desert, None }`
+- Enumerates the possible resources in the game of Catan:
+  - `Wood`
+  - `Brick`
+  - `Sheep`
+  - `Wheat`
+  - `Ore`
+  - `Sea`
+  - `Desert`
+  - `None`
+
+### Inline Functions
+
+#### `string resourceToString(Resource resource)`
+- Converts a `Resource` enum value to its corresponding string representation.
+- **Parameters:**
+  - `Resource resource`: The resource enum value to be converted.
+- **Returns:**
+  - A `string` representing the name of the resource.
+
+**Example Usage:**
+
+Resource res = Resource::Wood;
+string resStr = resourceToString(res);  // resStr will be "Wood"
 
 
