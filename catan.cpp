@@ -18,19 +18,16 @@ Catan::Catan(Player p1, Player p2, Player p3, Player p4, Board* b) {
     board = b;
     players[0] = p1;  // Initialize all players to default Player objects
     players[1] = p2;
-    //players[2] = p;
+    numPlayers = 2; // Only two players provided
     if (p3.getName() != "") {  // Check if a third player is provided
         players[2] = p3;
         numPlayers = 3;
     } 
-    else if (p4.getName() != "") {  // Check if a fourth player is provided
+    if (p4.getName() != "") {  // Check if a fourth player is provided
         players[3] = p4;
         numPlayers = 4;
     } 
-    else {  // Only two players provided
-        numPlayers = 2;
-    }
-    indexOfCurrentP = 0;
+    indexOfCurrentP = 0; // the default starting player is player number 1
 }
 
 // Method to print the current game state
@@ -39,6 +36,7 @@ void Catan::printGameState() const {
     board->printBoard();
     for (size_t i = 0; i < numPlayers; i++) {
         if (players[i].getName() != "") {
+            cout << players[i].getName() << " has:" << endl;
             players[i].printResources(); // Print each player's resources
         }
     }
@@ -47,11 +45,13 @@ void Catan::printGameState() const {
 // Method to choose the starting player randomly
 void Catan::ChooseStartingPlayer(){
     // Randomly choose the starting player
-    players[0].setIsPlaying(true);
-    currentPlayer = &players[0];
-    indexOfCurrentP = 0;
+    srand(time(0));  // Use current time as seed for random generator
+    int random = rand() % numPlayers;
+    players[random].setIsPlaying(true);
+    currentPlayer = &players[random];
+    indexOfCurrentP = random;
     board->setCurrentPlayerName(currentPlayer->getName());
-    cout << "The starting player is: " << players[0].getName() << endl;
+    cout << "The starting player is: " << players[random].getName() << endl;
 }
 
 // Method to get the game board
@@ -63,7 +63,8 @@ Board* Catan::getBoard(){
 void Catan::printWinner(){
     for (size_t i = 0; i < 4; i++) {
         if (players[i].getPoints() >= 10) {
-            cout << players[i].getName() << endl;
+            cout << players[i].getName() << " is the winner" << endl;
+            return;
         }
     }
     cout << "There is no winner" << endl;
@@ -80,7 +81,7 @@ bool Catan::isVertexAvilable(int v){
 
 // Method to switch to the next player's turn
 void Catan::nextPlayer(){
-    if (currentPlayer->getPoints() == 10) { // Check for a winner
+    if (currentPlayer->getPoints() >= 10) { // Check for a winner
         printWinner();
         return;
     }

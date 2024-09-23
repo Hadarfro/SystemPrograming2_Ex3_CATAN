@@ -1,6 +1,7 @@
 {
     "C_Cpp.default.compilerPath": "/usr/bin/clang++",
     "files.associations": {
-        "memory_resource": "cpp"
+        "memory_resource": "cpp",
+        "ctime": "cpp"
     }
 }
