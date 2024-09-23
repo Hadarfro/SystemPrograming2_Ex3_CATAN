@@ -46,10 +46,10 @@ void Catan::printGameState() const {
 void Catan::ChooseStartingPlayer(){
     // Randomly choose the starting player
     srand(time(0));  // Use current time as seed for random generator
-    int random = rand() % numPlayers;
+    unsigned int random = static_cast<unsigned int>(rand()) % numPlayers;
     players[random].setIsPlaying(true);
     currentPlayer = &players[random];
-    indexOfCurrentP = random;
+    indexOfCurrentP = (size_t)random;
     board->setCurrentPlayerName(currentPlayer->getName());
     cout << "The starting player is: " << players[random].getName() << endl;
 }
