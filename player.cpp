@@ -15,7 +15,7 @@
 using namespace std;
 
 // Player class constructor
-Player::Player(string myName) : name(myName), SettelemntAmount(2), roadAmount(2), points(2) {
+Player::Player(string myName) : name(myName), SettelemntAmount(2), CitesAmount(0), roadAmount(2), points(2) {
     // Initialize resource cards to 0
     ResourceCards[Resource::Wood] = 0;
     ResourceCards[Resource::Brick] = 0;
@@ -65,6 +65,22 @@ void Player::placeSettelemnt(int v, Board& board){
     }
     board.getVertcis()[u].owner = name;
     this->SettelemntAmount--;
+}
+
+// Method to place a settlement on the board
+void Player::placeCity(int v, Board& board){
+    size_t u = (size_t) v;
+    if(board.getVertcis()[u].owner != ""){ 
+        throw runtime_error("place is taken");
+        return;
+    }
+    if(this->CitesAmount == 0){
+        cout << "no cites to place" << endl;
+        return;
+    }
+    board.getVertcis()[u].owner = name;
+    board.getVertcis()[u].isCity = true;
+    this->CitesAmount--;
 }
 
 // Method to place a road on the board
@@ -185,6 +201,21 @@ void Player::buySettelemnt(){
         SettelemntAmount++;
         points++;
         cout << "Settlement purchased successfully." << endl;
+    } 
+    else {
+        cout << "Purchase failed: Not enough resources." << endl;
+    }
+}
+
+// Method to buy a city
+void Player::buyCity(){
+    if (this->hasResource(Resource::Wheat, 2) && this->hasResource(Resource::Ore, 3)) {
+        this->removeResource(Resource::Wheat, 2);
+        this->removeResource(Resource::Ore, 3);
+
+        CitesAmount++;
+        addPoints(2);
+        cout << "City purchased successfully." << endl;
     } 
     else {
         cout << "Purchase failed: Not enough resources." << endl;

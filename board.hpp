@@ -44,13 +44,14 @@ class Vertex {
     public:
         string owner;
         vector<Tile*> adjacentTiles;
+        bool isCity;
         inline void addAdjacentTile(vector<Tile*> tile) {
             for(size_t i = 0;i < tile.size();i++){
                 adjacentTiles.push_back(tile[i]);
             }
         }
         Vertex(string o = "", vector<Tile*> adjacentTiles = {})
-        : adjacentTiles(adjacentTiles), owner(o) {
+        : adjacentTiles(adjacentTiles), owner(o), isCity(false) {
             // owner is not initialized here
         }
 };

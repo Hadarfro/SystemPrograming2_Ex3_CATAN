@@ -27,6 +27,7 @@ class Player {
         mutable map<DevelopmentCard*, int> DevelopmentCards;
         Player* participants[4];
         int SettelemntAmount;
+        int CitesAmount;
         int roadAmount;
         int points;
         bool isPlaying;
@@ -40,9 +41,11 @@ class Player {
         int getPoints();
         void addResource(Resource resource, int amount) const;
         void buySettelemnt();
+        void buyCity();
         void buyRoad();
         void addPoints(int amount);
         void placeSettelemnt(int v,Board& board);
+        void placeCity(int v, Board& board);
         void placeRoad(int edge,Board& board);
         void endTurn();
         void addRandomResources();

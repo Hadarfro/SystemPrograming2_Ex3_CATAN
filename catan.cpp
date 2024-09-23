@@ -121,7 +121,12 @@ void Catan::rollDiceOfCurrentPlayer(){
                 if (board->getVertcis()[i].adjacentTiles[j]->getNumber() == roll) { // If the tile has the rolled number
                     for (size_t k = 0; k < numPlayers; k++) { // Loop through players
                         if (board->getVertcis()[i].owner == players[k].getName()) { // Find the owner of the settlement
-                            players[k].addResource(board->getVertcis()[i].adjacentTiles[j]->resource, 1); // Add resource to player
+                            if(!board->getVertcis()[i].isCity){
+                                players[k].addResource(board->getVertcis()[i].adjacentTiles[j]->resource, 1); // Add resource to player
+                            }
+                            else{
+                                players[k].addResource(board->getVertcis()[i].adjacentTiles[j]->resource, 2); // Add resource to player with a city
+                            }
                         }
                     }
                 }
